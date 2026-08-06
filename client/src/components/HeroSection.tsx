@@ -402,7 +402,10 @@ export default function HeroSection() {
               </div>
 
               {/* Floating badge: Band News */}
-              <div
+              <a
+                href="https://www.youtube.com/watch?v=SsM3Yqu2ePg"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   position: "absolute",
                   top: -14,
@@ -417,11 +420,24 @@ export default function HeroSection() {
                   boxShadow: "0 6px 20px rgba(186,152,99,0.5)",
                   whiteSpace: "nowrap",
                   letterSpacing: "0.02em",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 10px 26px rgba(186,152,99,0.65)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(186,152,99,0.5)";
                 }}
               >
                 <i className="fas fa-tv" style={{ marginRight: 6 }}></i>
                 Band News TV
-              </div>
+              </a>
 
               {/* Floating card: Isenção 13º */}
               <div
