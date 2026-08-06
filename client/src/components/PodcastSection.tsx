@@ -188,7 +188,7 @@ export default function PodcastSection() {
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ color: "white", fontWeight: 700, fontSize: "0.875rem", margin: 0 }}>SBF Contabilidade</p>
-                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", margin: "2px 0 0 0" }}>@sbfcontabilidade.com.br · Canal Oficial</p>
+                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", margin: "2px 0 0 0" }}>@sbfcontabilidade · Canal Oficial</p>
               </div>
               <a
                 href="https://www.youtube.com/@sbfcontabilidade"
@@ -213,10 +213,16 @@ export default function PodcastSection() {
               </a>
             </div>
 
-            {/* Embed */}
-            <div
+            {/* Video preview — the channel has iframe embedding disabled in
+                YouTube Studio, so we link out to a real thumbnail instead
+                of a broken player. */}
+            <a
+              href="https://www.youtube.com/watch?v=BlOhMU4Svh8"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 position: "relative",
+                display: "block",
                 paddingBottom: "56.25%",
                 height: 0,
                 borderRadius: "0 0 16px 16px",
@@ -224,23 +230,61 @@ export default function PodcastSection() {
                 border: "1px solid rgba(186,152,99,0.2)",
                 borderTop: "none",
                 boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+                background: "#0d1b2e",
               }}
             >
-              <iframe
-                src="https://www.youtube.com/embed?listType=user_uploads&list=sbfcontabilidade&rel=0&modestbranding=1"
-                title="SBF Contabilidade - Canal YouTube"
+              <img
+                src="https://img.youtube.com/vi/BlOhMU4Svh8/maxresdefault.jpg"
+                alt="Formação de Preço na Reforma Tributária — SBF Contabilidade"
                 style={{
                   position: "absolute",
                   top: 0,
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  border: "none",
+                  objectFit: "cover",
                 }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
               />
-            </div>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(0,0,0,0.25)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: 76,
+                    height: 76,
+                    borderRadius: "50%",
+                    background: "rgba(255,0,0,0.92)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <i className="fas fa-play" style={{ color: "white", fontSize: 26, marginLeft: 4 }}></i>
+                </div>
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 16,
+                  right: 16,
+                  bottom: 14,
+                  color: "white",
+                  fontWeight: 700,
+                  fontSize: "0.9375rem",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.8)",
+                }}
+              >
+                Formação de Preço na Reforma Tributária: proteja sua margem antes de 2027
+              </div>
+            </a>
           </div>
 
           {/* RIGHT: Channels + topics (2 cols) */}
