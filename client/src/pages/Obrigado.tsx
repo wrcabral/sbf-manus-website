@@ -52,7 +52,7 @@ export default function Obrigado() {
       >
         {/* Logo */}
         <img
-          src="/images/logo-full.png"
+          src="/images/sbf-prime-logo.webp"
           alt="SBF Contabilidade"
           style={{ height: 48, width: "auto", objectFit: "contain", marginBottom: 40 }}
         />
