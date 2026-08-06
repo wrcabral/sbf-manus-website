@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+
+// Google Apps Script Web App that appends form submissions to a Google
+// Sheet and emails the team. See scripts/README (or ask Wanderson) for
+// how to redeploy this if the script ever needs to change.
+const CONTACT_FORM_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyLT3tloJIIVcie9pNq5j_VxeeahOn-NI7mPlTr4N5wWUfQftObp0mMw1i2KrroXlM/exec";
 
 export default function ContatoSection() {
   const [form, setForm] = useState({
@@ -24,18 +29,9 @@ export default function ContatoSection() {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
-  const sendContact = trpc.contact.send.useMutation({
-    onSuccess: () => {
-      setSubmitted(true);
-      toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-    },
-    onError: (err: unknown) => {
-      toast.error("Erro ao enviar mensagem. Tente novamente ou entre em contato pelo WhatsApp.");
-      console.error(err);
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Marcar todos os campos como tocados para exibir erros
     setTouched({ name: true, email: true, message: true });
@@ -43,7 +39,22 @@ export default function ContatoSection() {
       toast.error("Preencha os campos obrigatórios corretamente.");
       return;
     }
-    sendContact.mutate(form);
+    setIsSubmitting(true);
+    try {
+      // Plain-text body avoids a CORS preflight (Apps Script Web Apps
+      // don't handle OPTIONS requests), the script still parses it as JSON.
+      await fetch(CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify({ ...form, source: "site-sbfcontabilidade" }),
+      });
+      setSubmitted(true);
+      toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+    } catch (err) {
+      toast.error("Erro ao enviar mensagem. Tente novamente ou entre em contato pelo WhatsApp.");
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -328,35 +339,35 @@ export default function ContatoSection() {
 
                 <button
                   type="submit"
-                  disabled={sendContact.isPending}
+                  disabled={isSubmitting}
                   className="w-full py-4 rounded-xl font-bold text-sm relative overflow-hidden"
                   style={{
-                    background: sendContact.isPending
+                    background: isSubmitting
                       ? "linear-gradient(135deg, #8a6a3f 0%, #a07840 100%)"
                       : "linear-gradient(135deg, #ba9863 0%, #d4b47a 100%)",
                     color: "#1a2a3a",
-                    cursor: sendContact.isPending ? "not-allowed" : "pointer",
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
                     transition: "background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease",
-                    boxShadow: sendContact.isPending
+                    boxShadow: isSubmitting
                       ? "0 0 0 3px rgba(186,152,99,0.3), 0 4px 20px rgba(186,152,99,0.2)"
                       : "0 4px 16px rgba(186,152,99,0.25)",
-                    transform: sendContact.isPending ? "scale(0.99)" : "scale(1)",
+                    transform: isSubmitting ? "scale(0.99)" : "scale(1)",
                   }}
                   onMouseEnter={(e) => {
-                    if (!sendContact.isPending) {
+                    if (!isSubmitting) {
                       (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(186,152,99,0.4)";
                       (e.currentTarget as HTMLElement).style.transform = "scale(1.01)";
                     }
                   }}
                   onMouseLeave={(e) => {
-                    if (!sendContact.isPending) {
+                    if (!isSubmitting) {
                       (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(186,152,99,0.25)";
                       (e.currentTarget as HTMLElement).style.transform = "scale(1)";
                     }
                   }}
                 >
                   {/* Shimmer de progresso enquanto envia */}
-                  {sendContact.isPending && (
+                  {isSubmitting && (
                     <span
                       aria-hidden="true"
                       style={{
@@ -369,7 +380,7 @@ export default function ContatoSection() {
                     />
                   )}
                   <span className="relative flex items-center justify-center gap-2">
-                    {sendContact.isPending ? (
+                    {isSubmitting ? (
                       <>
                         {/* Spinner SVG nativo — sem dependência de Font Awesome */}
                         <svg
