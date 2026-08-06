@@ -40,11 +40,25 @@ export default function Navbar() {
   const produtosRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Route-based pages (e.g. /blog) aren't tracked by scroll position —
+    // highlight them directly based on the current path.
+    if (location.startsWith("/blog")) {
+      setActiveSection("/blog");
+    } else if (location === "/") {
+      setActiveSection("#hero");
+    } else {
+      setActiveSection("");
+    }
+  }, [location]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
 
+      if (location !== "/") return; // scroll-spy only makes sense on the homepage
+
       // Track active section
-      const sections = NAV_LINKS.map(l => l.href.replace("#", ""));
+      const sections = NAV_LINKS.map(l => l.href.replace("#", "")).filter(id => !id.startsWith("/"));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el) {
