@@ -106,7 +106,7 @@ export default function Navbar() {
                 style={{ textDecoration: "none" }}
               >
               <img
-                src="/manus-storage/sbf_prime_logo_3af17c31.webp"
+                src="/images/logo-full.png"
                 alt="SBF Prime Contabilidade"
                 style={{ height: 52, width: "auto", objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(201,169,97,0.3))" }}
               />

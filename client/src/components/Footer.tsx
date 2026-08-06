@@ -74,7 +74,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1 flex flex-col" style={{ gap: 20 }}>
             <img
-              src="/manus-storage/sbf_prime_logo_3af17c31.webp"
+              src="/images/logo-full.png"
               alt="SBF Contabilidade"
               style={{ height: 44, width: "auto", objectFit: "contain" }}
             />
