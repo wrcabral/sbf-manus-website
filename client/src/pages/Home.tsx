@@ -32,15 +32,18 @@ export default function Home() {
   useEffect(() => {
     if (window.location.hash) {
       const id = window.location.hash;
-      // Wait a tick for all sections to render before measuring position.
-      requestAnimationFrame(() => {
+      // Wait for layout (images, fonts) to settle before measuring position,
+      // otherwise the offset is calculated against a still-shifting page.
+      const scrollToSection = () => {
         const el = document.querySelector(id);
         if (el) {
           const offset = 80;
           const top = el.getBoundingClientRect().top + window.scrollY - offset;
           window.scrollTo({ top, behavior: "smooth" });
         }
-      });
+      };
+      const timer = setTimeout(scrollToSection, 300);
+      return () => clearTimeout(timer);
     }
   }, []);
 
