@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 export default function Footer() {
   const handleNavClick = (href: string) => {
     const el = document.querySelector(href);
@@ -312,9 +314,17 @@ export default function Footer() {
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", margin: 0, textAlign: "center" }}>
             © {new Date().getFullYear()} SBF Contabilidade. Todos os direitos reservados.
           </p>
-          <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", margin: 0, textAlign: "center" }}>
-            CNPJ registrado · CRC — Conselho Regional de Contabilidade
-          </p>
+          <div className="flex items-center" style={{ gap: 16 }}>
+            <Link
+              href="/politica-de-privacidade"
+              style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.75rem", textDecoration: "none" }}
+            >
+              Política de Privacidade
+            </Link>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", margin: 0, textAlign: "center" }}>
+              CNPJ registrado · CRC — Conselho Regional de Contabilidade
+            </p>
+          </div>
         </div>
       </div>
     </footer>

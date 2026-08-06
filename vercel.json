@@ -1,4 +1,76 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/quem-somos", "destination": "/#quem-somos", "permanent": true },
+    { "source": "/quem-somos/", "destination": "/#quem-somos", "permanent": true },
+
+    { "source": "/servicos", "destination": "/#servicos", "permanent": true },
+    { "source": "/servicos/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/abrir-empresa", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/abrir-empresa/", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/abertura-empresa", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/abertura-empresa/", "destination": "/#abertura-transicao", "permanent": true },
+
+    { "source": "/trocar-contador", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/trocar-contador/", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/trocar-de-contador", "destination": "/#abertura-transicao", "permanent": true },
+    { "source": "/trocar-de-contador/", "destination": "/#abertura-transicao", "permanent": true },
+
+    { "source": "/consultoria-contabil", "destination": "/#servicos", "permanent": true },
+    { "source": "/consultoria-contabil/", "destination": "/#servicos", "permanent": true },
+    { "source": "/consultoria-contabil-tributaria", "destination": "/#servicos", "permanent": true },
+    { "source": "/consultoria-contabil-tributaria/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/bpo-financeiro", "destination": "/#servicos", "permanent": true },
+    { "source": "/bpo-financeiro/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/recuperacao-fiscal", "destination": "/#servicos", "permanent": true },
+    { "source": "/recuperacao-fiscal/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/regularize-empresa", "destination": "/#servicos", "permanent": true },
+    { "source": "/regularize-empresa/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/escritorio-contabil", "destination": "/#servicos", "permanent": true },
+    { "source": "/escritorio-contabil/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/escritorio-virtual", "destination": "/#servicos", "permanent": true },
+    { "source": "/escritorio-virtual/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/migrar-mei-para-me", "destination": "/#servicos", "permanent": true },
+    { "source": "/migrar-mei-para-me/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/saude-financeira", "destination": "/#servicos", "permanent": true },
+    { "source": "/saude-financeira/", "destination": "/#servicos", "permanent": true },
+
+    { "source": "/contabilidade-especializada", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/area-da-saude", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/area-da-saude/", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/comercio-varejista", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/comercio-varejista/", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/prestadores-de-servicos", "destination": "/#segmentos", "permanent": true },
+    { "source": "/contabilidade-especializada/prestadores-de-servicos/", "destination": "/#segmentos", "permanent": true },
+
+    { "source": "/planos", "destination": "/#planos", "permanent": true },
+    { "source": "/planos/", "destination": "/#planos", "permanent": true },
+
+    { "source": "/contato", "destination": "/#contato", "permanent": true },
+    { "source": "/contato/", "destination": "/#contato", "permanent": true },
+
+    { "source": "/politica-de-privacidade/", "destination": "/politica-de-privacidade", "permanent": true },
+
+    { "source": "/obrigado/", "destination": "/obrigado", "permanent": true },
+
+    { "source": "/blog/", "destination": "/blog", "permanent": true },
+
+    { "source": "/category/:slug", "destination": "/blog", "permanent": true },
+    { "source": "/category/:slug/", "destination": "/blog", "permanent": true },
+    { "source": "/tag/:slug", "destination": "/blog", "permanent": true },
+    { "source": "/tag/:slug/", "destination": "/blog", "permanent": true },
+    { "source": "/author/:slug", "destination": "/blog", "permanent": true },
+    { "source": "/author/:slug/", "destination": "/blog", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
