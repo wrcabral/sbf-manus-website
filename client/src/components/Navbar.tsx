@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "wouter";
 
 const NAV_LINKS = [
   { label: "Início", href: "#hero" },
@@ -30,6 +31,7 @@ const PRODUTOS_LINKS = [
 ];
 
 export default function Navbar() {
+  const [location, navigate] = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#hero");
@@ -70,6 +72,14 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
+
+    // If we're not on the homepage, these section ids don't exist on the
+    // current page — navigate home first, then scroll once it mounts.
+    if (location !== "/") {
+      navigate(`/${href}`);
+      return;
+    }
+
     const el = document.querySelector(href);
     if (el) {
       const offset = 80;

@@ -191,7 +191,7 @@ export default function PodcastSection() {
                 <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", margin: "2px 0 0 0" }}>@sbfcontabilidade.com.br · Canal Oficial</p>
               </div>
               <a
-                href="https://www.youtube.com/@sbfcontabilidade.com.br"
+                href="https://www.youtube.com/@sbfcontabilidade"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -254,7 +254,7 @@ export default function PodcastSection() {
                 name: "YouTube",
                 badge: "Canal Principal",
                 desc: "Vídeos semanais com análises tributárias e gestão empresarial.",
-                link: "https://www.youtube.com/@sbfcontabilidade.com.br",
+                link: "https://www.youtube.com/@sbfcontabilidade",
                 cta: "Assistir",
               },
               {
@@ -272,7 +272,7 @@ export default function PodcastSection() {
                 name: "Instagram",
                 badge: "Conteúdo Diário",
                 desc: "Dicas rápidas, cases de sucesso e bastidores da SBF.",
-                link: "https://instagram.com/consultoriasbfcontabilidade",
+                link: "https://www.instagram.com/sbfprimecontabilidade/",
                 cta: "Seguir",
               },
             ].map((ch) => (
@@ -411,7 +411,7 @@ export default function PodcastSection() {
           </div>
           <div className="flex" style={{ gap: 12, flexWrap: "wrap" }}>
             <a
-              href="https://www.youtube.com/@sbfcontabilidade.com.br"
+              href="https://www.youtube.com/@sbfcontabilidade"
               target="_blank"
               rel="noopener noreferrer"
               style={{

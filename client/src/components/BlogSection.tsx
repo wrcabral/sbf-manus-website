@@ -81,7 +81,7 @@ export default function BlogSection() {
             </p>
           </div>
           <a
-            href="https://www.youtube.com/@sbfcontabilidade.com.br"
+            href="https://www.youtube.com/@sbfcontabilidade"
             target="_blank"
             rel="noopener noreferrer"
             className="sbf-btn sbf-btn-outline"
@@ -231,7 +231,7 @@ export default function BlogSection() {
             Quer conteúdo exclusivo sobre gestão tributária e financeira?
           </p>
           <a
-            href="https://www.youtube.com/@sbfcontabilidade.com.br"
+            href="https://www.youtube.com/@sbfcontabilidade"
             target="_blank"
             rel="noopener noreferrer"
             className="sbf-btn sbf-btn-gold"

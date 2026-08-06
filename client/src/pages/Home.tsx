@@ -23,8 +23,27 @@ import AberturaTransicaoSection from "@/components/AberturaTransicaoSection";
 import MissaoVisaoSection from "@/components/MissaoVisaoSection";
 import ContactFloat from "@/components/ContactFloat";
 import ProdutosEstrategicosSection from "@/components/ProdutosEstrategicosSection";
+import { useEffect } from "react";
 
 export default function Home() {
+  // If we arrived here via a #section link from another page (e.g. the
+  // navbar on /metodo-real or /rota-tributaria), scroll to that section
+  // once the page has mounted and rendered.
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash;
+      // Wait a tick for all sections to render before measuring position.
+      requestAnimationFrame(() => {
+        const el = document.querySelector(id);
+        if (el) {
+          const offset = 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ fontFamily: "'DM Sans', 'Montserrat', sans-serif" }}>
       <Navbar />

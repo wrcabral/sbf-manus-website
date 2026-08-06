@@ -135,7 +135,7 @@ export default function ContatoSection() {
               </a>
 
               <a
-                href="https://www.youtube.com/@sbfcontabilidade.com.br"
+                href="https://www.youtube.com/@sbfcontabilidade"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-5 rounded-xl transition-all hover:opacity-90"

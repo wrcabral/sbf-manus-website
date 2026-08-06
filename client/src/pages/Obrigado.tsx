@@ -152,7 +152,7 @@ export default function Obrigado() {
             Falar no WhatsApp agora
           </a>
           <a
-            href="https://www.youtube.com/@sbfcontabilidade.com.br"
+            href="https://www.youtube.com/@sbfcontabilidade"
             target="_blank"
             rel="noopener noreferrer"
             className="sbf-btn sbf-btn-outline"

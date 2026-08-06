@@ -84,7 +84,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex" style={{ gap: 10 }}>
               <a
-                href="https://www.youtube.com/@sbfcontabilidade.com.br"
+                href="https://www.youtube.com/@sbfcontabilidade"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -102,6 +102,26 @@ export default function Footer() {
                 }}
               >
                 <i className="fab fa-youtube" style={{ fontSize: 14 }}></i>
+              </a>
+              <a
+                href="https://www.instagram.com/sbfprimecontabilidade/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 10,
+                  background: "rgba(225,48,108,0.12)",
+                  border: "1px solid rgba(225,48,108,0.2)",
+                  color: "#e1306c",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textDecoration: "none",
+                  transition: "opacity 0.2s",
+                }}
+              >
+                <i className="fab fa-instagram" style={{ fontSize: 14 }}></i>
               </a>
               <a
                 href="https://wa.me/5521988652452"
@@ -257,14 +277,24 @@ export default function Footer() {
                 Portal Conecta SBF
               </a>
               <a
-                href="https://www.youtube.com/@sbfcontabilidade.com.br"
+                href="https://www.youtube.com/@sbfcontabilidade"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center"
                 style={{ gap: 10, color: "rgba(255,255,255,0.6)", fontSize: "0.875rem", textDecoration: "none" }}
               >
                 <i className="fab fa-youtube" style={{ color: "#ff5555", fontSize: 14 }}></i>
-                @sbfcontabilidade.com.br
+                @sbfcontabilidade
+              </a>
+              <a
+                href="https://www.instagram.com/sbfprimecontabilidade/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+                style={{ gap: 10, color: "rgba(255,255,255,0.6)", fontSize: "0.875rem", textDecoration: "none" }}
+              >
+                <i className="fab fa-instagram" style={{ color: "#e1306c", fontSize: 14 }}></i>
+                @sbfprimecontabilidade
               </a>
             </div>
           </div>
