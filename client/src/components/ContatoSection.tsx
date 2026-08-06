@@ -155,6 +155,31 @@ export default function ContatoSection() {
               </a>
             </div>
 
+            {/* Google Calendar Embed — wrapped in a light card so Google's dark-on-transparent
+                text stays legible against our dark theme (we can't restyle the iframe itself,
+                it's a different origin). Kept compact: just enough to pick a slot. */}
+            <div>
+              <h3 className="text-white font-bold text-base mb-3 flex items-center gap-2">
+                <i className="fas fa-calendar-alt" style={{ color: "#ba9863" }}></i>
+                Agendar Consultoria Gratuita
+              </h3>
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{ border: "1px solid rgba(186,152,99,0.3)", background: "#f5f3ee" }}
+              >
+                <iframe
+                  src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ05R_cON9I_nb-GbDOMnLsYwaj7jqcH0vMxBwCnvt4UFV7tZALrY__Fh1AX8Z9rlpPURmrgVCBp?gv=true"
+                  style={{ border: 0, width: "100%", height: "440px", display: "block" }}
+                  title="Agendar Consultoria SBF Contabilidade"
+                  frameBorder="0"
+                  scrolling="yes"
+                ></iframe>
+              </div>
+              <p className="text-white/50 text-xs mt-2 text-center">
+                Ou entre em contato pelo WhatsApp para agendamento imediato
+              </p>
+            </div>
+
           </div>
 
           {/* Right: Contact form */}
@@ -372,28 +397,6 @@ export default function ContatoSection() {
               </form>
             )}
           </div>
-        </div>
-
-        {/* Google Calendar Embed — full width so the widget has room to render all 7 days */}
-        <div className="mt-12">
-          <h3 className="text-white font-bold text-base mb-4 flex items-center gap-2">
-            <i className="fas fa-calendar-alt" style={{ color: "#ba9863" }}></i>
-            Agendar Consultoria Gratuita
-          </h3>
-          <div
-            className="rounded-2xl overflow-hidden"
-            style={{ border: "1px solid rgba(186,152,99,0.3)" }}
-          >
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ05R_cON9I_nb-GbDOMnLsYwaj7jqcH0vMxBwCnvt4UFV7tZALrY__Fh1AX8Z9rlpPURmrgVCBp?gv=true"
-              style={{ border: 0, width: "100%", height: "650px", display: "block" }}
-              title="Agendar Consultoria SBF Contabilidade"
-              frameBorder="0"
-            ></iframe>
-          </div>
-          <p className="text-white/50 text-xs mt-2 text-center">
-            Ou entre em contato pelo WhatsApp para agendamento imediato
-          </p>
         </div>
       </div>
     </section>
