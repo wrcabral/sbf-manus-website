@@ -1011,3 +1011,46 @@
     animation: pulse-ring 2.5s ease-in-out infinite;
   }
 }
+
+/* Blog post content — styling for the raw HTML migrated from the old blog */
+.blog-content {
+  color: #232c3a;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.blog-content h2 {
+  color: #0d1b2e;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 36px 0 14px;
+}
+.blog-content h3 {
+  color: #0d1b2e;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 28px 0 12px;
+}
+.blog-content p {
+  margin: 0 0 18px;
+}
+.blog-content ul,
+.blog-content ol {
+  margin: 0 0 18px;
+  padding-left: 1.4em;
+}
+.blog-content li {
+  margin-bottom: 8px;
+}
+.blog-content a {
+  color: #9a7b3f;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.blog-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 12px 0;
+}
+.blog-content strong {
+  color: #0d1b2e;
+}

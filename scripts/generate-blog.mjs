@@ -206,6 +206,40 @@ function writeLatestPostsData(posts) {
   console.log(`[blog] Wrote latest-posts.json (${latest.length} posts) for the client bundle.`);
 }
 
+function writePublicBlogData(posts) {
+  // Public static assets (NOT bundled into the JS) that the in-app React
+  // Blog/BlogPost pages fetch() at runtime, so browsing the blog inside
+  // the SPA never triggers a full page reload. Must run BEFORE `vite
+  // build` so client/public gets copied into dist/public as-is.
+  const PUBLIC_DIR = path.join(ROOT, "client", "public");
+
+  // Lightweight index (no contentHtml) for the /blog listing page.
+  const index = posts.map((p) => ({
+    slug: p.slug,
+    year: p.year,
+    month: p.month,
+    day: p.day,
+    title: p.title,
+    metaDescription: p.metaDescription,
+    imagePath: p.imagePath,
+    date: formatDate(p),
+    url: postUrl(p),
+  }));
+  const indexPath = path.join(PUBLIC_DIR, "data", "blog-index.json");
+  fs.mkdirSync(path.dirname(indexPath), { recursive: true });
+  fs.writeFileSync(indexPath, JSON.stringify(index), "utf-8");
+
+  // One small JSON file per post (with contentHtml) so viewing a single
+  // post only downloads that post, not all 242.
+  const postsDir = path.join(PUBLIC_DIR, "data", "posts");
+  fs.mkdirSync(postsDir, { recursive: true });
+  for (const p of posts) {
+    const file = path.join(postsDir, `${p.year}-${p.month}-${p.day}-${p.slug}.json`);
+    fs.writeFileSync(file, JSON.stringify({ ...p, date: formatDate(p) }), "utf-8");
+  }
+  console.log(`[blog] Wrote public blog data: blog-index.json + ${posts.length} per-post files.`);
+}
+
 function writeStaticPages(posts) {
   // Real static HTML files — must run AFTER `vite build` since they land
   // directly in dist/public alongside the built assets.
@@ -232,6 +266,7 @@ function main() {
 
   if (mode === "pre") {
     writeLatestPostsData(posts);
+    writePublicBlogData(posts);
   } else if (mode === "post") {
     writeStaticPages(posts);
   } else {

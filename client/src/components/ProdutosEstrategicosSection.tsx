@@ -1,6 +1,8 @@
+import { useLocation } from "wouter";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ProdutosEstrategicosSection() {
+  const [, navigate] = useLocation();
   return (
     <section
       id="produtos"
@@ -195,6 +197,7 @@ export default function ProdutosEstrategicosSection() {
 
               <a
                 href="/metodo-real"
+                onClick={(e) => { e.preventDefault(); navigate("/metodo-real"); }}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -337,6 +340,7 @@ export default function ProdutosEstrategicosSection() {
 
               <a
                 href="/rota-tributaria"
+                onClick={(e) => { e.preventDefault(); navigate("/rota-tributaria"); }}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

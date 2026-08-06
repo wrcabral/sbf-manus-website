@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Obrigado from "./pages/Obrigado";
 import MetodoReal from "./pages/MetodoReal";
 import RotaTributaria from "./pages/RotaTributaria";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -17,6 +19,11 @@ function Router() {
       <Route path={"/obrigado"} component={Obrigado} />
       <Route path={"/metodo-real"} component={MetodoReal} />
       <Route path={"/rota-tributaria"} component={RotaTributaria} />
+      <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/page/:page"} component={Blog} />
+      {/* Migrated blog post permalinks — must come after the routes above
+          so they don't shadow them. */}
+      <Route path={"/:year/:month/:day/:slug"} component={BlogPost} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

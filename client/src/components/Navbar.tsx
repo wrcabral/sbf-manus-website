@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "Serviços", href: "#servicos" },
   { label: "Segmentos", href: "#segmentos" },
   { label: "Podcast", href: "#podcast" },
+  { label: "Blog", href: "/blog" },
   { label: "Conecta SBF", href: "#conecta" },
   { label: "Planos", href: "#planos" },
   { label: "Contato", href: "#contato" },
@@ -72,6 +73,13 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
+
+    // Route-based nav items (e.g. "/blog") — always a client-side SPA
+    // navigation, never a section scroll.
+    if (href.startsWith("/")) {
+      navigate(href);
+      return;
+    }
 
     // If we're not on the homepage, these section ids don't exist on the
     // current page — navigate home first, then scroll once it mounts.
@@ -269,7 +277,7 @@ export default function Navbar() {
                       <a
                         key={produto.href}
                         href={produto.href}
-                        onClick={() => setProdutosOpen(false)}
+                        onClick={(e) => { e.preventDefault(); setProdutosOpen(false); navigate(produto.href); }}
                         style={{
                           display: "flex",
                           alignItems: "flex-start",
@@ -429,7 +437,7 @@ export default function Navbar() {
                   <a
                     key={produto.href}
                     href={produto.href}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigate(produto.href); }}
                     style={{
                       display: "flex",
                       alignItems: "center",

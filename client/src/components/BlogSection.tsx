@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import latestPosts from "@/data/latest-posts.json";
 
 export default function BlogSection() {
@@ -48,20 +49,20 @@ export default function BlogSection() {
               Conteúdo especializado para empresários que querem tomar decisões financeiras mais inteligentes.
             </p>
           </div>
-          <a
+          <Link
             href="/blog"
             className="sbf-btn sbf-btn-outline"
             style={{ flexShrink: 0 }}
           >
             <i className="fas fa-book-open"></i>
             Ver todos os artigos
-          </a>
+          </Link>
         </div>
 
         {/* Articles grid */}
         <div className="grid md:grid-cols-3" style={{ gap: 20 }}>
           {posts.map((post) => (
-            <a
+            <Link
               key={post.slug}
               href={post.url}
               style={{
@@ -146,7 +147,7 @@ export default function BlogSection() {
                   Ler artigo completo <i className="fas fa-arrow-right" style={{ fontSize: 10 }}></i>
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -155,13 +156,13 @@ export default function BlogSection() {
           <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.9375rem", margin: "0 0 16px" }}>
             Mais de 240 artigos sobre tributos, gestão e empreendedorismo esperando por você.
           </p>
-          <a
+          <Link
             href="/blog"
             className="sbf-btn sbf-btn-gold"
           >
             <i className="fas fa-book-open"></i>
             Explorar o Blog SBF
-          </a>
+          </Link>
         </div>
       </div>
     </section>
