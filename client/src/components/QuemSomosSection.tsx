@@ -113,7 +113,7 @@ export default function QuemSomosSection() {
                 }}
               >
                 <img
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663261678160/LzLNKjUrGJAbzqVg.jpg"
+                  src="/images/bruno-fonseca-hero.jpg"
                   alt="Bruno Fonseca - Sócio Diretor SBF Contabilidade"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                 />
