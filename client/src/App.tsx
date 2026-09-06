@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Obrigado from "./pages/Obrigado";
 import MetodoReal from "./pages/MetodoReal";
 import RotaTributaria from "./pages/RotaTributaria";
+import SimuladorCBS from "./pages/SimuladorCBS";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Politica from "./pages/Politica";
@@ -20,6 +21,7 @@ function Router() {
       <Route path={"/obrigado"} component={Obrigado} />
       <Route path={"/metodo-real"} component={MetodoReal} />
       <Route path={"/rota-tributaria"} component={RotaTributaria} />
+      <Route path={"/simulador-cbs"} component={SimuladorCBS} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/page/:page"} component={Blog} />
       <Route path={"/politica-de-privacidade"} component={Politica} />

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -792,6 +793,19 @@ export default function RotaTributaria() {
               <i className="fas fa-envelope" />
               bruno.fonseca@sbfcontabilidade.com.br
             </a>
+          </div>
+          <div style={{ marginTop: 24 }}>
+            <Link
+              href="/simulador-cbs"
+              style={{
+                color: "#0B132B",
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                textDecoration: "underline",
+              }}
+            >
+              Ou simule agora o impacto da CBS no seu caixa →
+            </Link>
           </div>
         </div>
       </section>

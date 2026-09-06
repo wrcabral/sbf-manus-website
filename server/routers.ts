@@ -56,6 +56,7 @@ export const appRouter = router({
         source: z.enum(["exit_popup", "calculator", "contact_form"]).default("exit_popup"),
         faturamento: z.string().optional(),
         regime: z.string().optional(),
+        message: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
         const db = await getDb();
@@ -64,7 +65,7 @@ export const appRouter = router({
         }
         await notifyOwner({
           title: `[SBF Site] Novo lead (${input.source}) — ${input.email}`,
-          content: `E-mail: ${input.email}\nNome: ${input.name || "Não informado"}\nTelefone: ${input.phone || "Não informado"}\nEmpresa: ${input.company || "Não informada"}\nFaturamento: ${input.faturamento || "—"}\nRegime atual: ${input.regime || "—"}\nOrigem: ${input.source}`,
+          content: `E-mail: ${input.email}\nNome: ${input.name || "Não informado"}\nTelefone: ${input.phone || "Não informado"}\nEmpresa: ${input.company || "Não informada"}\nFaturamento: ${input.faturamento || "—"}\nRegime atual: ${input.regime || "—"}\nOrigem: ${input.source}${input.message ? `\n\n${input.message}` : ""}`,
         });
         return { success: true };
       }),
