@@ -15,7 +15,6 @@ import DepoimentosSection from "@/components/DepoimentosSection";
 import ContatoSection from "@/components/ContatoSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import ChatbotWidget from "@/components/ChatbotWidget";
 import ExitPopup from "@/components/ExitPopup";
 import ClientesSection from "@/components/ClientesSection";
 import JornadaSection from "@/components/JornadaSection";
@@ -88,7 +87,6 @@ export default function Home() {
       {/* Floating widgets */}
       <WhatsAppFloat />
       <ContactFloat />
-      <ChatbotWidget />
       <ExitPopup />
     </div>
   );

@@ -3,7 +3,6 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { invokeLLM } from "./_core/llm";
 import { getDb } from "./db";
 import { leads, articles } from "../drizzle/schema";
 import { eq, desc } from "drizzle-orm";
@@ -71,65 +70,8 @@ export const appRouter = router({
       }),
   }),
 
-  // Chatbot IA treinado com informações da SBF
-  chat: router({
-    message: publicProcedure
-      .input(z.object({
-        messages: z.array(z.object({
-          role: z.enum(["user", "assistant"]),
-          content: z.string(),
-        })),
-      }))
-      .mutation(async ({ input }) => {
-        const systemPrompt = `Você é o assistente virtual da SBF Contabilidade, um escritório de contabilidade consultiva premium localizado no Rio de Janeiro.
 
-SOBRE A SBF:
-- Fundada por Bruno Fonseca, especialista em Gestão Contábil e Tributária (FGV), com mais de 15 anos de experiência
-- Formado em Contabilidade pela Moraes Junior (2005), especialista em Lucro Real
-- Experiência em grandes corporações: Deloitte, Brookfield, Enel, Contax
-- Endereço: Av. Ayrton Senna 2500, Sala 308 Bloco 2, Edifício Neolink, Rio de Janeiro - RJ
-- WhatsApp: (21) 98865-2452
-- Portal educacional: https://conectasbf.ensinio.com/browse
-- YouTube: @sbfcontabilidade.com.br
-
-SERVIÇOS OFERECIDOS:
-1. Contabilidade Consultiva (Lucro Real e Presumido)
-2. Planejamento Tributário (redução legal de impostos)
-3. BPO Financeiro (gestão financeira terceirizada)
-4. Departamento Pessoal (folha, admissão, demissão)
-5. Legalização Societária (abertura, alteração, encerramento)
-6. Consultoria de Negócios
-7. Endereço Fiscal (endereço profissional para empresas)
-8. Recuperação Fiscal (créditos tributários)
-
-PLANOS:
-- SBF Start: Contabilidade Completa, Folha de Pagamento, Fiscal e Tributário, Acesso ao Portal SBF
-- SBF Consultivo (mais escolhido): Tudo do Start + Planejamento Tributário, Reuniões Trimestrais, Dashboard de BI, Suporte Prioritário
-- SBF BPO+: Contabilidade Consultiva, Gestão de Contas a Pagar, Gestão de Contas a Receber, Conciliação Bancária Diária
-
-DIFERENCIAL EXCLUSIVO: Isenção de 13º Salário para sócios — economia real de impostos.
-
-SEGMENTOS ATENDIDOS: E-commerce, Engenharia, Turismo, Tecnologia, Saúde, Instituições Financeiras, Serviços, Consultorias.
-
-INSTRUÇÕES:
-- Responda sempre em português brasileiro
-- Seja cordial, profissional e objetivo
-- Para dúvidas complexas ou orçamentos, sempre convide o visitante a agendar uma consultoria gratuita via WhatsApp: (21) 98865-2452
-- Não invente informações que não estão neste contexto
-- Máximo de 3 parágrafos por resposta
-- Se perguntarem sobre preços, diga que os valores são personalizados e convide para uma consultoria gratuita`;
-
-        const response = await invokeLLM({
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...input.messages,
-          ],
-        });
-
-        const content = response.choices?.[0]?.message?.content || "Desculpe, não consegui processar sua mensagem. Por favor, entre em contato pelo WhatsApp (21) 98865-2452.";
-        return { content };
-      }),
-  }),
+  // (Chatbot removido — nao utilizado; dependia do proxy de LLM da Manus)
 
   // Blog/Artigos
   articles: router({
