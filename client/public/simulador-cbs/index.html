@@ -1432,7 +1432,13 @@ function printReport(){const form=q('#sbf-form');if(!form.checkValidity()){form.
 /* Correção 1: a regra de tela "#sbf-cbs-proto section{margin-top:28px}" alcançava as páginas do
    relatório; a margem da 1ª página colapsava para cima e deslocava a capa 7,41mm, fazendo o rodapé
    cair numa página em branco. */
-#sbf-cbs-proto .report-page{margin:0!important}
+#sbf-cbs-proto .report-page{margin:0!important;height:calc(297mm - 2px)!important;min-height:0!important;overflow:hidden!important}
+/* A folga de 2px deixaria um fio branco no pé das páginas escuras; o box-shadow (não cortado pelo
+   overflow:hidden) estende a cor da página sobre esse fio. */
+#sbf-cbs-proto .report-page.dark{box-shadow:0 2px 0 0 #0b132b!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+/* Altura 1px menor que a folha A4: com min-height exatamente 297mm + quebra forçada, qualquer fração de
+   pixel (escala do Windows, DPI, arredondamento) faz a página atravessar a folha e o rodapé cair numa
+   página em branco -- foi o que gerou 16 páginas no Chrome do cliente. Assim nunca ultrapassa. */
 /* Correção 2: os 4 cartões de valor quebravam o número no meio (17pt + overflow-wrap:anywhere em ~31mm). */
 #sbf-cbs-proto .report-grid.four .r-card strong{font-size:12pt!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;letter-spacing:-.2pt}
 }
