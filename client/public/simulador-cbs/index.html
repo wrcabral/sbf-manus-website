@@ -1427,7 +1427,15 @@ function printReport(){const form=q('#sbf-form');if(!form.checkValidity()){form.
 #sbf-lead-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:20px;color:#8a93a6;cursor:pointer}
 #sbf-lead-note{font-size:11px;color:#8a93a6;margin-top:10px}
 #sbf-lead-error{display:none;font-size:12.5px;color:#a33a3a;margin-top:8px}
-@media print{#sbf-lead-overlay{display:none!important}}
+@media print{
+#sbf-lead-overlay{display:none!important}
+/* Correção 1: a regra de tela "#sbf-cbs-proto section{margin-top:28px}" alcançava as páginas do
+   relatório; a margem da 1ª página colapsava para cima e deslocava a capa 7,41mm, fazendo o rodapé
+   cair numa página em branco. */
+#sbf-cbs-proto .report-page{margin:0!important}
+/* Correção 2: os 4 cartões de valor quebravam o número no meio (17pt + overflow-wrap:anywhere em ~31mm). */
+#sbf-cbs-proto .report-grid.four .r-card strong{font-size:12pt!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;letter-spacing:-.2pt}
+}
 </style>
 <div id="sbf-lead-overlay" role="dialog" aria-modal="true" aria-labelledby="sbf-lead-title">
   <form id="sbf-lead-card" novalidate>
@@ -1460,6 +1468,17 @@ function printReport(){const form=q('#sbf-form');if(!form.checkValidity()){form.
   var pending=null;
   var leadOk=false;
   try{leadOk=sessionStorage.getItem(KEY)==='1';}catch(e){}
+
+  // Ajuste fino de impressão: se algum valor dos cartões ainda não couber (ex.: casa dos milhões),
+  // reduz a fonte gradualmente em vez de deixar vazar ou quebrar no meio do número.
+  function fitReportValues(){
+    document.querySelectorAll('#sbf-cbs-proto .report-grid.four .r-card strong').forEach(function(s){
+      s.style.fontSize='';
+      var size=12, guard=0;
+      while(s.scrollWidth>s.clientWidth && size>8 && guard++<10){ size-=0.5; s.style.fontSize=size+'pt'; }
+    });
+  }
+  window.addEventListener('beforeprint',fitReportValues);
 
   var ACTIONS='#sbf-cta,#sbf-export-pdf,#sbf-export-pdf-bottom';
   function txt(id){var e=document.getElementById('sbf-'+id);return e?e.textContent.trim():'';}
