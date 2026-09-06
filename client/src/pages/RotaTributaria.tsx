@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -795,7 +794,7 @@ export default function RotaTributaria() {
             </a>
           </div>
           <div style={{ marginTop: 24 }}>
-            <Link
+            <a
               href="/simulador-cbs"
               style={{
                 color: "#0B132B",
@@ -805,7 +804,7 @@ export default function RotaTributaria() {
               }}
             >
               Ou simule agora o impacto da CBS no seu caixa →
-            </Link>
+            </a>
           </div>
         </div>
       </section>
