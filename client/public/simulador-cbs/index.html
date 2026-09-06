@@ -1308,8 +1308,8 @@ html>body{padding:0}</style>
 <div class="sbf-dashboard">
 <form id="sbf-form"><h2>Dados da simulação</h2>
 <div class="fields">
-<label>Empresa / razão social<input id="sbf-company" placeholder="Nome que aparecerá no parecer" autocomplete="organization"><small>Usado somente no relatório gerado neste navegador.</small></label>
-<label>CNPJ<input id="sbf-cnpj" placeholder="00.000.000/0000-00" maxlength="18" inputmode="numeric"><small>Identificação opcional neste teste. Sem consulta cadastral conectada.</small></label>
+<label>CNPJ<input id="sbf-cnpj" placeholder="00.000.000/0000-00" maxlength="18" inputmode="numeric" autocomplete="off"><small id="sbf-cnpj-hint">Digite o CNPJ: preenchemos a empresa, o segmento e o regime automaticamente.</small></label>
+<label>Empresa / razão social<input id="sbf-company" placeholder="Preenchida pelo CNPJ (ou digite)" autocomplete="organization"><small>Preenchida automaticamente pelo CNPJ. Você pode ajustar — é o nome que aparece no parecer.</small></label>
 <label>Segmento / atividade<select id="sbf-sector">
 <optgroup label="Padrão — CBS de teste 8,8%"><option value="comercio">Comércio varejista</option><option value="industria">Indústria</option><option value="servicos">Serviços gerais</option><option value="construcao" disabled>Construção / manutenção — análise específica</option><option value="tecnologia">Tecnologia / software</option></optgroup>
 <optgroup label="Redução de 30% — condições legais"><option value="prof">Profissões regulamentadas*</option></optgroup>
@@ -1485,6 +1485,41 @@ function printReport(){const form=q('#sbf-form');if(!form.checkValidity()){form.
     });
   }
   window.addEventListener('beforeprint',fitReportValues);
+
+  // ---- Consulta automática de CNPJ (BrasilAPI) ----
+  // Ao sair do campo com 14 dígitos: preenche empresa, sugere segmento (pelo CNAE) e regime (opção pelo
+  // Simples). Falha em silêncio: sem CNPJ ou com a API fora, a pessoa segue preenchendo manualmente.
+  var CNAE_SETOR={'69':'prof','71':'prof','86':'saude','85':'educacao','62':'tecnologia','63':'tecnologia','47':'comercio',
+    '56':'bares','55':'hotel','79':'turismo','96':'funerario','90':'artistica','93':'desportiva','68':'locacao',
+    '10':'industria','11':'industria','13':'industria','14':'industria','15':'industria','16':'industria','17':'industria',
+    '18':'industria','20':'industria','22':'industria','23':'industria','24':'industria','25':'industria','26':'industria',
+    '27':'industria','28':'industria','29':'industria','31':'industria','32':'industria'};
+  var cnpjEl=document.getElementById('sbf-cnpj'), cnpjHint=document.getElementById('sbf-cnpj-hint'),
+      companyEl=document.getElementById('sbf-company'), sectorEl=document.getElementById('sbf-sector'), regimeEl=document.getElementById('sbf-regime');
+  var HINT_DEFAULT=cnpjHint?cnpjHint.textContent:'', lastLookup='';
+  function maskCnpj(v){v=v.replace(/\D/g,'').slice(0,14);
+    if(v.length>12)return v.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,2})/,'$1.$2.$3/$4-$5');
+    if(v.length>8)return v.replace(/(\d{2})(\d{3})(\d{3})(\d{1,4})/,'$1.$2.$3/$4');
+    if(v.length>5)return v.replace(/(\d{2})(\d{3})(\d{1,3})/,'$1.$2.$3');
+    if(v.length>2)return v.replace(/(\d{2})(\d{1,3})/,'$1.$2');return v;}
+  function fire(el,type){el.dispatchEvent(new Event(type,{bubbles:true}));}
+  function setHint(t,ok){if(!cnpjHint)return;cnpjHint.textContent=t;cnpjHint.style.color=ok?'#1f6f4e':'';cnpjHint.style.fontWeight=ok?'700':'';}
+  if(cnpjEl){
+    cnpjEl.addEventListener('input',function(){cnpjEl.value=maskCnpj(cnpjEl.value);if(cnpjEl.value.replace(/\D/g,'').length<14){setHint(HINT_DEFAULT,false);lastLookup='';}});
+    cnpjEl.addEventListener('blur',function(){
+      var d=cnpjEl.value.replace(/\D/g,'');
+      if(d.length!==14||d===lastLookup)return;
+      lastLookup=d; setHint('Consultando o CNPJ...',false);
+      fetch('https://brasilapi.com.br/api/cnpj/v1/'+d).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(j){
+        var nome=j.nome_fantasia||j.razao_social||'';
+        if(nome&&companyEl){companyEl.value=nome;fire(companyEl,'input');}
+        var pre=String(j.cnae_fiscal||'').slice(0,2), setor=CNAE_SETOR[pre];
+        if(setor&&sectorEl){var opt=sectorEl.querySelector('option[value="'+setor+'"]');if(opt&&!opt.disabled){sectorEl.value=setor;fire(sectorEl,'change');}}
+        if(j.opcao_pelo_simples&&regimeEl){regimeEl.value='simples';fire(regimeEl,'change');}
+        setHint(nome?'Encontramos: '+nome+(setor?' · segmento sugerido pelo CNAE':''):'CNPJ consultado. Confira o segmento e o regime.',!!nome);
+      }).catch(function(){setHint('Não conseguimos consultar agora. Preencha a empresa e o segmento manualmente.',false);lastLookup='';});
+    });
+  }
 
   var ACTIONS='#sbf-cta,#sbf-export-pdf,#sbf-export-pdf-bottom';
   function txt(id){var e=document.getElementById('sbf-'+id);return e?e.textContent.trim():'';}
