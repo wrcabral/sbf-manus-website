@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+
+// Mesmo Google Apps Script Web App já usado pelo formulário de contato
+// (ContatoSection.tsx) — grava numa aba própria da mesma planilha e
+// notifica por e-mail. Não depende do serviço interno da Manus, que não
+// está configurado neste deploy na Vercel.
+const LEAD_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyLT3tloJIIVcie9pNq5j_VxeeahOn-NI7mPlTr4N5wWUfQftObp0mMw1i2KrroXlM/exec";
 
 // ---------------------------------------------------------------------------
 // Segmentos e faixas de redução de CBS previstas na reforma tributária.
@@ -77,9 +83,7 @@ export default function SimuladorCBS() {
     efetiva: number; ref: number; debito: number; credito: number; saldo: number; diferenca: number;
   }>(null);
 
-  const capture = trpc.leads.capture.useMutation({
-    onError: () => toast.error("Não conseguimos registrar seus dados agora. Tente de novo em instantes."),
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleCnpjBlur() {
     const digits = cnpj.replace(/\D/g, "");
@@ -107,7 +111,7 @@ export default function SimuladorCBS() {
     setShowModal(true);
   }
 
-  function handleEnviar(e: React.FormEvent) {
+  async function handleEnviar(e: React.FormEvent) {
     e.preventDefault();
     if (!nome || !email || !whatsapp) {
       toast.error("Preencha nome, e-mail e WhatsApp.");
@@ -131,27 +135,40 @@ export default function SimuladorCBS() {
 
     setResultado({ efetiva, ref, debito, credito, saldo, diferenca });
     setShowModal(false);
+    setIsSubmitting(true);
 
-    capture.mutate({
-      email,
-      name: nome,
-      phone: whatsapp,
-      company: empresaNome || undefined,
-      source: "calculator",
-      faturamento: formatCurrency(fat) + "/mês",
-      regime: regimeInfo.label,
-      message: [
-        `Simulador CBS 2027 — landing de captação`,
-        `CNPJ: ${cnpj || "não informado"}`,
-        `Segmento: ${setor} (${setorInfo.titulo})`,
-        `Faturamento mensal: ${formatCurrency(fat)}`,
-        `Despesas/compras: ${formatCurrency(comp)}`,
-        `Regime atual: ${regimeInfo.label}`,
-        `CBS efetiva estimada: ${efetiva.toFixed(1)}%`,
-        `Saldo CBS a recolher/mês: ${formatCurrency(saldo)}`,
-        `Diferença vs. referência 2026: ${diferenca >= 0 ? "-" : "+"}${formatCurrency(Math.abs(diferenca))}/mês`,
-      ].join("\n"),
-    } as any);
+    try {
+      // Corpo em texto puro (sem Content-Type) evita preflight OPTIONS,
+      // que o Apps Script Web App não sabe responder — mesma técnica do
+      // formulário de contato.
+      await fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify({
+          name: nome,
+          email,
+          phone: whatsapp,
+          company: empresaNome || "",
+          subject: "Simulador CBS 2027",
+          source: "simulador-cbs",
+          message: [
+            `Simulador CBS 2027 — landing de captação`,
+            `CNPJ: ${cnpj || "não informado"}`,
+            `Segmento: ${setor} (${setorInfo.titulo})`,
+            `Faturamento mensal: ${formatCurrency(fat)}`,
+            `Despesas/compras: ${formatCurrency(comp)}`,
+            `Regime atual: ${regimeInfo.label}`,
+            `CBS efetiva estimada: ${efetiva.toFixed(1)}%`,
+            `Saldo CBS a recolher/mês: ${formatCurrency(saldo)}`,
+            `Diferença vs. referência 2026: ${diferenca >= 0 ? "-" : "+"}${formatCurrency(Math.abs(diferenca))}/mês`,
+          ].join("\n"),
+        }),
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error("Não conseguimos registrar seus dados agora. Seu resultado continua na tela, mas fale com a gente pelo WhatsApp pra garantir o contato.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const setorInfo = SETORES[setor];
@@ -420,8 +437,8 @@ export default function SimuladorCBS() {
               <label style={{ display: "block", fontSize: 12, fontWeight: 600, marginBottom: 6 }}>WhatsApp</label>
               <input value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} placeholder="(21) 90000-0000" required inputMode="tel" style={{ width: "100%", padding: "12px 13px", fontSize: 14.5, border: "1.5px solid #E2E5EC", borderRadius: 10 }} />
             </div>
-            <button type="submit" disabled={capture.isPending} style={{ marginTop: 22, width: "100%", padding: 14, border: "none", borderRadius: 11, background: "linear-gradient(135deg,#CAA354,#B78E44)", color: "#0D1526", fontWeight: 700, fontSize: 14.5, cursor: "pointer", opacity: capture.isPending ? 0.7 : 1 }}>
-              {capture.isPending ? "Enviando..." : "Ver resultado e receber o parecer"}
+            <button type="submit" disabled={isSubmitting} style={{ marginTop: 22, width: "100%", padding: 14, border: "none", borderRadius: 11, background: "linear-gradient(135deg,#CAA354,#B78E44)", color: "#0D1526", fontWeight: 700, fontSize: 14.5, cursor: "pointer", opacity: isSubmitting ? 0.7 : 1 }}>
+              {isSubmitting ? "Enviando..." : "Ver resultado e receber o parecer"}
             </button>
             <div style={{ fontSize: 11, color: "#9CA3B4", marginTop: 10 }}>
               Usamos seus dados apenas para enviar o parecer e para o contato da SBF Prime.
