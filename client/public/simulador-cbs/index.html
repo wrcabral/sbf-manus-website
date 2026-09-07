@@ -102,6 +102,22 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;border-top:1px solid var
 .book .ok b{display:block;font-family:'Montserrat';font-size:17px;color:var(--green);margin-bottom:4px}
 .book .ok p{margin:0 0 10px;font-size:14px}
 @media(max-width:520px){.days{grid-template-columns:repeat(4,1fr)}.day b{font-size:19px}.book{padding:16px}}
+
+/* ===== alerta de cenário vermelho ===== */
+#alert-overlay{position:fixed;inset:0;background:rgba(13,27,46,.78);display:none;align-items:center;justify-content:center;z-index:98;padding:20px}
+#alert-overlay.open{display:flex}
+#alert-card{background:#fff;color:var(--navy);border-radius:18px;width:100%;max-width:520px;padding:30px;position:relative;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border-top:6px solid var(--red);animation:pop .4s cubic-bezier(.2,.9,.3,1.15)}
+#alert-close{position:absolute;top:12px;right:14px;border:0;background:none;font-size:22px;color:var(--muted);cursor:pointer}
+#alert-card .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);background:rgba(165,44,37,.1);padding:6px 12px;border-radius:999px}
+#alert-card .tag i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:blink 1.1s infinite}
+@keyframes blink{50%{opacity:.25}}
+#alert-card h3{font-size:24px;margin:14px 0 8px;line-height:1.15}
+#alert-card .num{font:800 34px 'Montserrat';color:var(--red);margin:6px 0 2px}#alert-card .num small{font-size:15px;font-weight:600;color:var(--muted);margin-left:6px}
+#alert-card p{margin:10px 0 0;font-size:14.5px;line-height:1.55;color:var(--navy3)}
+#alert-card .actions{margin-top:20px}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 12px 26px -12px rgba(165,44,37,.6)}.btn-red:hover{background:#8f241e}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+@media(max-width:520px){#alert-card{padding:22px}#alert-card h3{font-size:21px}}
 @media print{#lead-overlay{display:none!important}}
 </style>
 </head>
@@ -170,6 +186,21 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;border-top:1px solid var
 </div>
 
 
+
+<div id="alert-overlay" role="dialog" aria-modal="true" aria-labelledby="alert-title">
+  <div id="alert-card">
+    <button type="button" id="alert-close" aria-label="Fechar">×</button>
+    <span class="tag"><i></i>Atenção · cenário de alta</span>
+    <h3 id="alert-title">Seu cenário acendeu o sinal vermelho.</h3>
+    <div class="num" id="alert-num"></div>
+    <p id="alert-text"></p>
+    <p style="font-size:13px;color:var(--muted)">Isso é um alerta, não uma sentença: créditos, precificação e enquadramento podem reduzir esse impacto — mas precisa ser tratado <b>antes</b> da virada para 2027, não depois.</p>
+    <div class="actions">
+      <a class="btn btn-red" id="alert-whats" href="#" target="_blank" rel="noopener">Falar com o Bruno agora</a>
+      <button class="btn btn-outline" type="button" id="alert-agenda">Agendar reunião urgente</button>
+    </div>
+  </div>
+</div>
 <div id="lead-overlay" role="dialog" aria-modal="true">
   <form id="lead-card" novalidate>
     <button type="button" id="lead-close" aria-label="Fechar">×</button>
@@ -238,7 +269,34 @@ document.getElementById('f').addEventListener('submit',e=>{
     'No seu cenário, a CBS tende a sair <u>mais cara</u> que hoje — cerca de '+money(-diff*12)+' por ano.',
     'Isso é um alerta, não uma sentença: créditos, precificação e enquadramento podem reduzir esse impacto — e é exatamente o que o diagnóstico investiga.');}
   ans.scrollIntoView({behavior:'smooth',block:'start'});
+  applyVerdict(ref===null?'igual':(share<IGUAL?'igual':(diff>0?'menos':'mais')), diff, revenue);
 });
+
+// ===== Tom da chamada conforme o resultado =====
+const ctaA=document.getElementById('cta-agenda'), ctaP=document.getElementById('cta-parecer'), lockEl=document.querySelector('#ans .lock');
+let alertTimer=null;
+function applyVerdict(kind, diff, revenue){
+  clearTimeout(alertTimer); document.getElementById('alert-overlay').classList.remove('open');
+  if(kind==='mais'){
+    ctaA.textContent='Falar com o Bruno com urgência'; ctaA.className='btn btn-red'; ctaP.textContent='Quero o parecer completo em PDF';
+    lockEl.innerHTML='<b>Esse número pede ação antes de 2027.</b> Créditos, precificação e enquadramento podem reduzir esse impacto — mas só se forem tratados agora. O Bruno olha seu caso em uma reunião.';
+    const m=money(-diff), y=money(-diff*12);
+    document.getElementById('alert-num').innerHTML=m+'<small>a mais por mês</small>';
+    document.getElementById('alert-text').innerHTML='Pela simulação, sua empresa tende a pagar cerca de <b>'+y+' a mais por ano</b> de CBS em 2027, em relação ao que paga hoje de PIS/Cofins.';
+    const txt='Olá Bruno, fiz a simulação de CBS no site e o cenário da minha empresa'+(empresa?' ('+empresa+')':'')+' ficou em alerta: cerca de '+m+' a mais por mês em 2027. Quero conversar com urgência sobre como reduzir isso.';
+    document.getElementById('alert-whats').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(txt);
+    alertTimer=setTimeout(()=>document.getElementById('alert-overlay').classList.add('open'),1100);
+  }else if(kind==='menos'){
+    ctaA.textContent='Confirmar minha redução com o Bruno'; ctaA.className='btn btn-gold'; ctaP.textContent='Quero o parecer completo em PDF';
+    lockEl.innerHTML='Bom cenário. Vale <b>confirmar esse ganho</b> com o Bruno em uma conversa tranquila — e ver se dá pra melhorar ainda mais com os créditos certos.';
+  }else{
+    ctaA.textContent='Agendar 30 min com o Bruno'; ctaA.className='btn btn-gold'; ctaP.textContent='Quero o parecer completo em PDF';
+    lockEl.innerHTML='Esse é o cenário estimado. O que muda ele pra cima ou pra baixo são seus créditos e seu enquadramento — e isso só se descobre olhando seus documentos. É a reunião.';
+  }
+}
+document.getElementById('alert-close').addEventListener('click',()=>document.getElementById('alert-overlay').classList.remove('open'));
+document.getElementById('alert-overlay').addEventListener('click',e=>{if(e.target.id==='alert-overlay')e.currentTarget.classList.remove('open');});
+document.getElementById('alert-agenda').addEventListener('click',()=>{document.getElementById('alert-overlay').classList.remove('open');openModal('agenda');});
 function set(l,b,v,w){document.getElementById('a-lbl').textContent=l;document.getElementById('a-big').innerHTML=b;document.getElementById('a-verdict').innerHTML=v;document.getElementById('a-why').textContent=w;}
 // ===== CNPJ: máscara + consulta BrasilAPI (preenche empresa, segmento, regime) =====
 const CNAE_SETOR={'69':'prof','71':'prof','86':'saude','85':'educacao','62':'tecnologia','63':'tecnologia','47':'comercio','56':'bares','55':'hotel','79':'turismo','96':'funerario','90':'artistica','93':'desportiva','68':'locacao','10':'industria','11':'industria','13':'industria','14':'industria','15':'industria','16':'industria','17':'industria','18':'industria','20':'industria','22':'industria','23':'industria','24':'industria','25':'industria','26':'industria','27':'industria','28':'industria','29':'industria','31':'industria','32':'industria'};
@@ -331,7 +389,7 @@ form.addEventListener('submit',e=>{e.preventDefault();
     'Paga hoje (PIS/Cofins): '+(r.ref!=null?money(r.ref):'—'),'CBS 2027 estimada: '+(r.balance!=null?money(r.balance):'—'),
     'Diferença: '+(r.diff!=null?(r.diff>=0?'-':'+')+money(Math.abs(r.diff))+'/mês':'—')+' ('+(r.verdict||'—')+')',
     'Ação: '+(pending==='agenda'?'quer agendar 30 min':'quer o parecer completo'),'Link do parecer: '+location.origin+completoUrl()].join('\n');
-  fetch(ENDPOINT,{method:'POST',body:JSON.stringify({name,email,phone,company:empresa,subject:'Landing CBS 2027 — '+(pending==='agenda'?'agendar':'parecer'),source:'landing-cbs',message:msg})})
+  fetch(ENDPOINT,{method:'POST',body:JSON.stringify({name,email,phone,company:empresa,subject:((lastCalc&&lastCalc.verdict==='paga mais')?'URGENTE · ':'')+'Landing CBS 2027 — '+(pending==='agenda'?'agendar':'parecer'),source:'landing-cbs',message:msg})})
    .catch(()=>{}).finally(()=>{leadOk=true;try{sessionStorage.setItem(KEY,'1');}catch(e){}sub.disabled=false;sub.textContent='Continuar';ov.classList.remove('open');act(pending);});
 });
 </script>
