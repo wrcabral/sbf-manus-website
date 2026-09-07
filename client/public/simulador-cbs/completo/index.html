@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Diagnóstico CBS 2027 — Simule o impacto na sua empresa | SBF Contabilidade</title>
+<meta name="description" content="Veja como a CBS vai afetar o caixa da sua empresa em 2027. Simulação gratuita de débitos, créditos e pontos de atenção por segmento, com parecer executivo em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/webp" href="/images/sbf-prime-logo.webp">
+<style>:root {
+  color-scheme: light;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled="true"]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed="true"],
+  [aria-selected="true"],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type="file"]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type="color"] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="time"],
+    [type="week"]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+</head>
+<body>
+<div id="sbf-cbs-proto">
+<style>
+#sbf-cbs-proto{font-family:Arial,sans-serif;background:#f8f7f4;color:#0d1b2e;padding:0;line-height:1.5;border:1px solid #e2ddd5}#sbf-cbs-proto *{box-sizing:border-box}#sbf-cbs-proto header{background:#0d1b2e;color:white;padding:26px;border-bottom:4px solid #ba9863}#sbf-cbs-proto h1{font-size:27px;margin:8px 0;font-weight:600}#sbf-cbs-proto h2{font-size:19px;margin:0 0 12px}#sbf-cbs-proto h3{font-size:16px;margin:0 0 8px}#sbf-cbs-proto p{margin:8px 0}#sbf-cbs-proto .eyebrow{letter-spacing:2px;font-size:12px;color:#dec49b}#sbf-cbs-proto main{padding:24px}#sbf-cbs-proto .fields,#sbf-cbs-proto .metrics,#sbf-cbs-proto .topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}#sbf-cbs-proto label{display:block;font-size:13px;font-weight:600}#sbf-cbs-proto input,#sbf-cbs-proto select{display:block;width:100%;padding:11px;margin-top:5px;border:1px solid #bdb7ac;border-radius:4px;background:white;color:#0d1b2e;font:16px Arial}#sbf-cbs-proto small{display:block;font-size:12px;color:#6e6358;font-weight:400;margin-top:4px}#sbf-cbs-proto button{padding:12px 18px;background:#0d1b2e;color:white;border:0;border-radius:4px;font:600 15px Arial;cursor:pointer}#sbf-cbs-proto button:hover{background:#304366}#sbf-cbs-proto .action{margin:20px 0}#sbf-cbs-proto .notice{padding:12px 16px;background:#f0ebe1;border-left:3px solid #ba9863;font-size:13px;margin:18px 0}#sbf-cbs-proto .category{padding:16px;border-radius:4px;margin:20px 0}#sbf-cbs-proto .green{background:#e5f1e9;border-left:5px solid #287449;color:#18452b}#sbf-cbs-proto .yellow{background:#fff3d5;border-left:5px solid #a47712;color:#644900}#sbf-cbs-proto .red{background:#f8e7e4;border-left:5px solid #a63c35;color:#752c26}#sbf-cbs-proto .metric{background:white;border:1px solid #e2ddd5;padding:18px}#sbf-cbs-proto .metric strong{display:block;font-size:27px;margin:5px 0;font-variant-numeric:tabular-nums}#sbf-cbs-proto .metric.featured{background:#0d1b2e;color:white}#sbf-cbs-proto .metric.featured small{color:#e4d6be}#sbf-cbs-proto section{margin-top:26px}#sbf-cbs-proto .topic{border-top:2px solid #ba9863;padding-top:12px;font-size:14px}#sbf-cbs-proto details{margin-top:20px;border:1px solid #e2ddd5;padding:14px;background:white}#sbf-cbs-proto summary{cursor:pointer;font-weight:600}#sbf-cbs-proto .premises{padding-top:14px}#sbf-cbs-proto .foot{font-size:12px;color:#6e6358;border-top:1px solid #e2ddd5;padding:16px 24px}#sbf-cbs-proto [hidden]{display:none!important}#sbf-cbs-proto a{color:#304366}#sbf-cbs-proto .error{color:#982d25}#sbf-cbs-proto ul{padding-left:20px} @media(max-width:520px){#sbf-cbs-proto main{padding:16px}#sbf-cbs-proto .fields,#sbf-cbs-proto .metrics,#sbf-cbs-proto .topics{grid-template-columns:1fr}#sbf-cbs-proto header{padding:20px}}
+
+#sbf-cbs-proto .sbf-dashboard{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.25fr);gap:24px;align-items:start}#sbf-cbs-proto .sbf-dashboard .fields{grid-template-columns:1fr}#sbf-cbs-proto .sbf-dashboard form{background:white;border:1px solid #e2ddd5;padding:20px}#sbf-cbs-proto .sbf-dashboard .notice{margin-top:0}#sbf-cbs-proto .sbf-focus{padding:24px;margin:0 0 16px;border-radius:4px}#sbf-cbs-proto .sbf-focus strong{font-size:64px;display:block;letter-spacing:-3px;line-height:1.2;font-variant-numeric:tabular-nums}#sbf-cbs-proto .sbf-focus b{display:block;margin-top:10px}#sbf-cbs-proto .sbf-focus small{color:inherit}#sbf-cbs-proto .metric strong{font-size:24px}@media(max-width:760px){#sbf-cbs-proto .sbf-dashboard{grid-template-columns:1fr}}
+/* SBF — camada visual gerencial. Inserir após o CSS original. */
+#sbf-cbs-proto{--navy:#0d1b2e;--gold:#BA9863;--ink:#24334d;--muted:#6e6358;--line:#e0ded8;--green:#206440;--amber:#7a5e30;--red:#963b35;font-family:Arial,sans-serif;background:#f5f4f0;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;line-height:1.55;max-width:1400px;margin:0 auto}
+#sbf-cbs-proto header{padding:30px 36px 26px;background:var(--navy);border-bottom:4px solid var(--gold)}
+#sbf-cbs-proto header h1{font-size:clamp(25px,3vw,35px);line-height:1.18;letter-spacing:-.7px;font-weight:700;margin:14px 0 10px;max-width:900px;color:#fff}
+#sbf-cbs-proto header p{color:#e8eaf0;max-width:780px;font-size:15px}
+#sbf-cbs-proto .eyebrow{color:#dfc69f;font-weight:700;letter-spacing:1.6px;font-size:11px}
+#sbf-cbs-proto header .eyebrow:last-child{margin-top:19px;letter-spacing:1px;font-size:10px;color:#ddd6ca}
+#sbf-cbs-proto main{padding:30px 32px 32px}
+#sbf-cbs-proto h2{font-size:20px;line-height:1.3;color:var(--navy);letter-spacing:-.3px}
+#sbf-cbs-proto h3{font-size:15px;line-height:1.4;font-weight:700}
+#sbf-cbs-proto .sbf-dashboard{display:grid;grid-template-columns:minmax(280px,.78fr) minmax(0,1.4fr);gap:24px;align-items:start}
+#sbf-cbs-proto .sbf-dashboard form{margin:0;padding:24px;background:white;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:8px;box-shadow:0 4px 16px #0d1b2e06}
+#sbf-cbs-proto .sbf-dashboard form h2{margin-bottom:6px}
+#sbf-cbs-proto .sbf-dashboard .fields{grid-template-columns:1fr;gap:18px}
+#sbf-cbs-proto label{font-size:12px;font-weight:700;line-height:1.4;color:var(--navy)}
+#sbf-cbs-proto input,#sbf-cbs-proto select{min-height:46px;border:1px solid #c7c9ce;border-radius:5px;background:#fff;padding:11px 12px;margin-top:7px;font:15px Arial,sans-serif;color:var(--navy);box-shadow:0 1px 2px #0d1b2e04}
+#sbf-cbs-proto input:focus,#sbf-cbs-proto select:focus{outline:3px solid #ba98634d;outline-offset:1px;border-color:var(--gold)}
+#sbf-cbs-proto input[type=number]{font-variant-numeric:tabular-nums}
+#sbf-cbs-proto small{font-size:11px;line-height:1.5;color:var(--muted);font-weight:400;margin-top:6px}
+#sbf-cbs-proto .cost-emphasis{display:block;background:#faf5e9;border-left:3px solid var(--gold);padding:8px 10px;color:#624b29;font-size:12px;font-weight:700;margin:8px 0 0}
+#sbf-cbs-proto .action{margin:22px 0 0}
+#sbf-cbs-proto button{min-height:45px;background:var(--navy);border:1px solid var(--navy);border-radius:5px;padding:12px 16px;font:700 13px Arial,sans-serif;letter-spacing:.1px;transition:background .15s}
+#sbf-cbs-proto .action button{width:100%}
+#sbf-cbs-proto button:hover{background:#304366}
+#sbf-cbs-proto button:focus-visible,#sbf-cbs-proto summary:focus-visible,#sbf-cbs-proto a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+#sbf-cbs-proto .sbf-outcome{min-width:0}
+#sbf-cbs-proto .notice{background:#eeece5;color:#4a4c4f;padding:13px 16px;margin:0 0 16px;border-left:3px solid var(--gold);border-radius:0 5px 5px 0;font-size:12px;line-height:1.6}
+#sbf-cbs-proto .category{padding:12px 16px;margin:0 0 14px;border-radius:6px;font-size:12px}
+#sbf-cbs-proto .category p{margin:4px 0 0}
+#sbf-cbs-proto .sbf-focus{padding:24px 28px;margin:0 0 16px;border:1px solid #c4d9cb;border-left:5px solid var(--green);border-radius:8px;box-shadow:0 4px 18px #0d1b2e05}
+#sbf-cbs-proto .sbf-focus>span{font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+#sbf-cbs-proto .sbf-focus strong{font-size:clamp(56px,6.6vw,86px);line-height:1.05;font-weight:700;letter-spacing:-4px;font-variant-numeric:tabular-nums;margin:12px 0}
+#sbf-cbs-proto .sbf-focus b{font-size:16px;line-height:1.35;margin-top:10px}
+#sbf-cbs-proto .sbf-focus p{font-size:13px;max-width:620px;margin:8px 0}
+#sbf-cbs-proto .sbf-focus small{font-size:11px;color:inherit;opacity:.9}
+#sbf-cbs-proto .green{background:#edf6ef;color:#205539;border-left-color:var(--green)}
+#sbf-cbs-proto .yellow{background:#fff7e3;color:#735311;border-left-color:var(--amber)}
+#sbf-cbs-proto .red{background:#fbefed;color:#853a34;border-left-color:var(--red)}
+#sbf-cbs-proto .sbf-focus.yellow{border-color:#e8d9ae;border-left-color:var(--amber)}
+#sbf-cbs-proto .sbf-focus.red{border-color:#e7c7c2;border-left-color:var(--red)}
+#sbf-cbs-proto .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#sbf-cbs-proto .metric{padding:16px 18px;border:1px solid var(--line);border-radius:7px;background:#fff;min-width:0}
+#sbf-cbs-proto .metric>span{font-size:11px;font-weight:700;line-height:1.4;display:block;color:#5b6474}
+#sbf-cbs-proto .metric strong{font-size:clamp(20px,2.1vw,28px);line-height:1.25;letter-spacing:-.8px;margin:10px 0 6px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#sbf-cbs-proto .metric.featured{background:var(--navy);border-color:var(--navy);color:#fff}
+#sbf-cbs-proto .metric.featured>span{color:#e2d2b5}
+#sbf-cbs-proto .metric.featured small{color:#e1e6ee}
+#sbf-cbs-proto .insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+#sbf-cbs-proto .insight-card{padding:21px 22px;border:1px solid var(--line);border-radius:8px;background:white;font-size:13px;line-height:1.6;min-width:0}
+#sbf-cbs-proto .insight-card h3{font-size:16px;margin-bottom:12px}
+#sbf-cbs-proto .insight-card.opportunity{border-top:4px solid var(--green);background:#f3f8f3}
+#sbf-cbs-proto .insight-card.opportunity h3{color:var(--green)}
+#sbf-cbs-proto .insight-card.attention{border-top:4px solid var(--gold);background:#fffcf4}
+#sbf-cbs-proto .insight-card.attention h3{color:#7a5e30}
+#sbf-cbs-proto .insight-card ul{margin:0;padding-left:18px}
+#sbf-cbs-proto .insight-card li+li{margin-top:10px}
+#sbf-cbs-proto section{margin-top:28px}
+#sbf-cbs-proto .topics{gap:18px}
+#sbf-cbs-proto .topic{padding:18px 0 0;border-top:2px solid var(--gold);font-size:13px}
+#sbf-cbs-proto .topic p{color:#4c5563}
+#sbf-cbs-proto #sbf-simples{margin-top:24px;border:1px solid #d9c7a7;border-left:5px solid var(--gold);background:#f8f3e9;padding:23px 25px;border-radius:7px;font-size:13px}
+#sbf-cbs-proto #sbf-simples h2{font-size:20px;margin-bottom:10px}
+#sbf-cbs-proto #sbf-simples p:last-child{font-size:12px;color:#5e5b55}
+#sbf-cbs-proto .sbf-cta-panel{background:var(--navy);padding:26px;border-radius:8px;color:#fff;border-top:3px solid var(--gold)}
+#sbf-cbs-proto .sbf-cta-panel h2{color:#fff}
+#sbf-cbs-proto .sbf-cta-panel p{color:#e4e7ee;font-size:14px}
+#sbf-cbs-proto .sbf-cta-panel button{background:#e8cfa0;color:var(--navy);border-color:#e8cfa0;margin-top:8px}
+#sbf-cbs-proto details{margin-top:20px;padding:15px 18px;background:white;border:1px solid var(--line);border-radius:6px;font-size:12px}
+#sbf-cbs-proto summary{font-size:13px;color:var(--navy);font-weight:700}
+#sbf-cbs-proto details[open] summary{padding-bottom:12px;border-bottom:1px solid #eeece7;margin-bottom:10px}
+#sbf-cbs-proto .premises{gap:18px;padding-top:8px}
+#sbf-cbs-proto .foot{background:#efede7;border-top:1px solid #d8c5a7;font-size:11px;color:#5b5e64;padding:18px 32px;line-height:1.7}
+#sbf-cbs-proto [hidden]{display:none!important}
+@media(max-width:900px){#sbf-cbs-proto main{padding:24px}#sbf-cbs-proto header{padding:26px 24px}#sbf-cbs-proto .sbf-dashboard{grid-template-columns:minmax(240px,.9fr) minmax(0,1.2fr);gap:18px}#sbf-cbs-proto .sbf-dashboard form{padding:19px}#sbf-cbs-proto .sbf-focus{padding:22px}#sbf-cbs-proto .metric{padding:14px}}
+@media(max-width:720px){#sbf-cbs-proto .sbf-dashboard{grid-template-columns:1fr}#sbf-cbs-proto .sbf-dashboard form{padding:22px}#sbf-cbs-proto .sbf-dashboard .fields{grid-template-columns:repeat(2,minmax(0,1fr))}#sbf-cbs-proto .sbf-focus strong{font-size:72px}#sbf-cbs-proto .metric strong{font-size:26px}}
+@media(max-width:520px){#sbf-cbs-proto{border-radius:0}#sbf-cbs-proto main{padding:18px 14px}#sbf-cbs-proto header{padding:24px 20px}#sbf-cbs-proto .sbf-dashboard .fields,#sbf-cbs-proto .insight-grid,#sbf-cbs-proto .topics,#sbf-cbs-proto .premises{grid-template-columns:1fr}#sbf-cbs-proto .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#sbf-cbs-proto .metric{padding:14px 12px}#sbf-cbs-proto .metric strong{font-size:22px;letter-spacing:-.7px}#sbf-cbs-proto .sbf-focus{padding:22px}#sbf-cbs-proto .sbf-focus strong{font-size:64px}#sbf-cbs-proto .sbf-dashboard form{padding:20px}#sbf-cbs-proto .insight-card{padding:19px}#sbf-cbs-proto .foot{padding:16px 20px}}
+@media(prefers-reduced-motion:reduce){#sbf-cbs-proto button{transition:none}}
+@media print{#sbf-cbs-proto{max-width:none;border:0;background:#fff}#sbf-cbs-proto main{padding:20px 0}#sbf-cbs-proto .sbf-dashboard{grid-template-columns:32% 1fr;gap:18px}#sbf-cbs-proto .sbf-focus,#sbf-cbs-proto .metric,#sbf-cbs-proto .insight-card,#sbf-cbs-proto #sbf-simples{break-inside:avoid}#sbf-cbs-proto button{display:none}#sbf-cbs-proto .sbf-focus strong{font-size:58px}#sbf-cbs-proto .metric strong{font-size:22px}#sbf-cbs-proto .sbf-dashboard form{padding:14px}#sbf-cbs-proto .sbf-dashboard .fields{gap:10px}#sbf-cbs-proto header,#sbf-cbs-proto .metric.featured{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+#sbf-cbs-proto{background:#f5f7fa;color:#172033;border:0;font-family:Arial,Helvetica,sans-serif;box-shadow:none}
+#sbf-cbs-proto header{background:#0d1b2e;border-bottom:3px solid #ba9863;padding:18px 26px;display:block;border-radius:0}
+#sbf-cbs-proto header h1{font-size:30px;line-height:1.1;margin:12px 0}
+#sbf-cbs-proto header p{color:#e2ddd5;font-size:14px}
+#sbf-cbs-proto .sbf-brand-logo{width:92px;height:46px;object-fit:contain;object-position:left;margin-bottom:8px}
+#sbf-cbs-proto main{padding:28px 24px 40px}
+#sbf-cbs-proto .sbf-dashboard{gap:22px;grid-template-columns:minmax(245px,.8fr) minmax(0,1.35fr)}
+#sbf-cbs-proto .sbf-dashboard form{border:0;border-top:3px solid #ba9863;border-radius:0;background:white;box-shadow:0 8px 28px rgba(27,45,80,.07);padding:20px}
+#sbf-cbs-proto input,#sbf-cbs-proto select{background:#f4ecdd;border:1px solid #e8cfa0;border-radius:0;color:#053ecf}
+#sbf-cbs-proto .sbf-focus{border:0;border-top:4px solid #13795b;background:white;color:#0d1b2e;border-radius:0;box-shadow:0 8px 28px rgba(27,45,80,.07)}
+#sbf-cbs-proto .sbf-focus.yellow{border-top-color:#b54708;background:white;color:#0d1b2e}
+#sbf-cbs-proto .sbf-focus.red{border-top-color:#b42318;background:white;color:#0d1b2e}
+#sbf-cbs-proto .sbf-focus.green strong{color:#13795b}
+#sbf-cbs-proto .sbf-focus.yellow strong{color:#b54708}
+#sbf-cbs-proto .sbf-focus.red strong{color:#b42318}
+#sbf-cbs-proto .metric,#sbf-cbs-proto .metric.featured{background:white;color:#0d1b2e;border:0;border-top:3px solid #ba9863;border-radius:0;box-shadow:0 8px 28px rgba(27,45,80,.07)}
+#sbf-cbs-proto .metric.featured{border-top-color:#13795b}
+#sbf-cbs-proto .metric.featured small{color:#6e6358}
+#sbf-cbs-proto section>h2{background:#0d1b2e;color:white;padding:16px 20px;font-size:16px;margin:0 0 16px}
+#sbf-cbs-proto .insight-card{border-radius:0;box-shadow:0 8px 28px rgba(27,45,80,.06);padding:21px}
+#sbf-cbs-proto .opportunity{background:#e8f4ef;border:0;border-top:3px solid #13795b}
+#sbf-cbs-proto .attention{background:#fff4e5;border:0;border-top:3px solid #b54708}
+#sbf-cbs-proto .category{border-radius:0;font-size:13px}
+#sbf-cbs-proto #sbf-simples{background:white;border:0;border-left:5px solid #ba9863;box-shadow:0 8px 28px rgba(27,45,80,.06)}
+#sbf-cbs-proto .sbf-cta-panel{background:#0d1b2e;color:white;border-radius:0;border-left:6px solid #ba9863}
+#sbf-cbs-proto .sbf-cta-panel p{color:#e2ddd5}
+#sbf-cbs-proto .sbf-cta-panel button{background:#ba9863;color:#0d1b2e}
+#sbf-cbs-proto details{border-radius:0;border-color:#e2ddd5}
+@media(max-width:760px){#sbf-cbs-proto .sbf-dashboard{grid-template-columns:1fr}#sbf-cbs-proto main{padding:16px}#sbf-cbs-proto header h1{font-size:26px}}
+#sbf-cbs-proto .sbf-focus{background:#0d1b2e!important;color:white!important;border-top:4px solid #ba9863!important;padding:24px!important}
+#sbf-cbs-proto .sbf-focus strong{color:white!important;font-size:70px!important}
+#sbf-cbs-proto .sbf-focus small,#sbf-cbs-proto .sbf-focus p{color:#e2ddd5!important}
+#sbf-cbs-proto .sbf-focus b{color:#e3c79e!important}
+#sbf-cbs-proto .delta-hero{grid-column:1/-1;padding:26px!important;border:0!important;border-radius:8px!important;box-shadow:0 12px 30px rgba(19,121,91,.15)!important}
+#sbf-cbs-proto .delta-hero.saving{background:#087352!important;color:white!important}
+#sbf-cbs-proto .delta-hero.increase{background:#a52c25!important;color:white!important}
+#sbf-cbs-proto .delta-hero.neutral{background:#fff1d6!important;color:#704600!important}
+#sbf-cbs-proto .delta-hero strong{font-size:44px!important;color:inherit!important;letter-spacing:-1px}
+#sbf-cbs-proto .delta-hero span,#sbf-cbs-proto .delta-hero small{color:inherit!important}
+#sbf-cbs-proto .delta-hero span{font-weight:800;text-transform:uppercase;letter-spacing:1px}
+#sbf-cbs-proto .metric:not(.delta-hero){border-radius:6px!important}
+#sbf-cbs-proto .metric.featured{background:#eef2f8!important;border-top:4px solid #0d1b2e!important}
+#sbf-cbs-proto .metric.featured>span{color:#304366!important}
+#sbf-cbs-proto .metric.credit-card{background:#e8f4ef!important;border-top:4px solid #13795b!important}
+#sbf-cbs-proto .metric.credit-card strong{color:#13795b!important}
+#sbf-cbs-proto .metric.debit-card{border-top:4px solid #ba9863!important}
+#sbf-cbs-proto .category{background:#fff!important;border-left:4px solid #ba9863!important;color:#304366!important}
+#sbf-cbs-proto .insight-card h3{font-size:19px!important}
+@media(max-width:520px){#sbf-cbs-proto .delta-hero strong{font-size:34px!important}#sbf-cbs-proto .sbf-focus strong{font-size:56px!important}}
+/* Alto impacto: hierarquia executiva, cards de decisao e microinteracoes. */
+#sbf-cbs-proto{--surface:#fff;--surface-soft:#f1f4f8;--success:#087352;--danger:#a52c25;--warning:#9a7a45;background:#eef1f5}
+#sbf-cbs-proto header{position:relative;overflow:hidden;padding:24px 34px 28px;background:#152236}
+#sbf-cbs-proto header:after{content:"";position:absolute;right:-90px;bottom:-150px;width:360px;height:360px;border:1px solid rgba(186,152,99,.32);border-radius:50%;box-shadow:0 0 0 54px rgba(186,152,99,.06),0 0 0 108px rgba(186,152,99,.035);pointer-events:none}
+#sbf-cbs-proto header>*{position:relative;z-index:1}
+#sbf-cbs-proto header h1{max-width:760px;font-size:clamp(28px,3.4vw,44px);line-height:1.08;margin:10px 0 8px}
+#sbf-cbs-proto header p{font-size:15px;margin:0;max-width:650px}
+#sbf-cbs-proto main{padding:30px;max-width:1320px;margin:0 auto}
+#sbf-cbs-proto .sbf-dashboard{grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:26px}
+#sbf-cbs-proto .sbf-dashboard form{position:sticky;top:18px;border-top:0;padding:22px;box-shadow:0 12px 34px rgba(20,37,65,.1)}
+#sbf-cbs-proto .sbf-dashboard form:before{content:"SEU CENARIO";display:block;color:#8a6c3f;font-size:10px;font-weight:800;letter-spacing:1.6px;margin-bottom:7px}
+#sbf-cbs-proto .sbf-dashboard form h2{font-size:22px;margin-bottom:18px}
+#sbf-cbs-proto input,#sbf-cbs-proto select{background:#f0ede8;border:1px solid #e8cfa0;border-radius:6px;color:#152236;transition:border-color .18s,box-shadow .18s,background .18s}
+#sbf-cbs-proto input:hover,#sbf-cbs-proto select:hover{background:#fff;border-color:#ba9863}
+#sbf-cbs-proto button{border-radius:6px;transition:transform .18s,box-shadow .18s,background .18s}
+#sbf-cbs-proto button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(20,37,65,.18)}
+#sbf-cbs-proto .action button{background:#152236;min-height:50px}
+#sbf-cbs-proto .sbf-outcome>.notice{border:0;border-left:3px solid #ba9863;background:#f0ede8;padding:12px 15px}
+#sbf-cbs-proto .projection-panel{margin:0 0 14px!important;padding:0!important;background:transparent!important;border:0!important}
+#sbf-cbs-proto .projection-head{display:flex;justify-content:space-between;align-items:end;gap:16px;padding:0 2px 12px}
+#sbf-cbs-proto .projection-head h2{background:transparent!important;color:#152236!important;padding:0!important;margin:0!important;font-size:18px!important}
+#sbf-cbs-proto .projection-head p{margin:0;color:#6e6358;font-size:12px;text-align:right}
+#sbf-cbs-proto .projection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(150px,1.2fr);gap:8px}
+#sbf-cbs-proto .projection-item{background:#fff;padding:14px;border:1px solid #e2ddd5;min-width:0}
+#sbf-cbs-proto .projection-item span{display:block;color:#6e6358;font-size:10px;font-weight:800;line-height:1.35;text-transform:uppercase}
+#sbf-cbs-proto .projection-item b{display:block;color:#0d1b2e;font-size:clamp(15px,1.45vw,20px);line-height:1.2;margin-top:7px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+#sbf-cbs-proto .projection-item.final{background:#152236;border-color:#152236;box-shadow:0 10px 24px rgba(20,37,65,.16)}
+#sbf-cbs-proto .projection-item.final span{color:#e8cfa0}
+#sbf-cbs-proto .projection-item.final b{color:#fff;font-size:clamp(18px,1.7vw,24px)}
+#sbf-cbs-proto .projection-note{margin:9px 2px 0!important;color:#6e6358!important}
+#sbf-cbs-proto .category{display:flex;align-items:center;gap:12px;padding:13px 16px!important;box-shadow:0 7px 20px rgba(20,37,65,.06)}
+#sbf-cbs-proto .category:before{content:"CBS";display:grid;place-items:center;flex:0 0 42px;height:42px;background:#f1e7d6;color:#6c5129;font-size:10px;font-weight:900;letter-spacing:.8px;border-radius:50%}
+#sbf-cbs-proto .category strong{display:block;font-size:13px}
+#sbf-cbs-proto .category p{font-size:12px}
+#sbf-cbs-proto .sbf-focus{position:relative;overflow:hidden;min-height:230px;display:flex;flex-direction:column;justify-content:center;padding:28px 30px!important;box-shadow:0 16px 38px rgba(20,37,65,.2)}
+#sbf-cbs-proto .sbf-focus:after{content:"";position:absolute;right:-58px;top:-78px;width:240px;height:240px;border:34px solid rgba(186,152,99,.11);border-radius:50%;pointer-events:none}
+#sbf-cbs-proto .sbf-focus>*{position:relative;z-index:1}
+#sbf-cbs-proto .sbf-focus>span{color:#e8cfa0;font-size:10px;letter-spacing:1.5px}
+#sbf-cbs-proto .sbf-focus strong{font-size:clamp(58px,7vw,92px)!important;line-height:.95!important;margin:18px 0 14px!important}
+#sbf-cbs-proto .sbf-focus b{font-size:17px!important}
+#sbf-cbs-proto .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+#sbf-cbs-proto .metric{position:relative;min-height:126px;padding:18px!important;border:1px solid #e2ddd5!important;border-top:0!important;border-radius:7px!important;box-shadow:0 7px 20px rgba(20,37,65,.06)!important;overflow:hidden}
+#sbf-cbs-proto .metric:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#ba9863}
+#sbf-cbs-proto .metric strong{font-size:clamp(22px,2.3vw,32px);margin:12px 0 5px}
+#sbf-cbs-proto .delta-hero{grid-column:1/-1;order:-1;min-height:154px;display:flex;flex-direction:column;justify-content:center;padding:24px 28px!important;border:0!important;box-shadow:0 14px 30px rgba(8,115,82,.2)!important}
+#sbf-cbs-proto .delta-hero:before{display:none}
+#sbf-cbs-proto .delta-hero:after{content:"IMPACTO MENSAL";position:absolute;right:24px;top:22px;padding:6px 9px;border:1px solid currentColor;border-radius:4px;font-size:9px;font-weight:900;letter-spacing:1.2px;opacity:.8}
+#sbf-cbs-proto .delta-hero strong{font-size:clamp(38px,5vw,58px)!important;line-height:1;margin:14px 0 8px!important}
+#sbf-cbs-proto .metric.credit-card:before{background:#13795b}
+#sbf-cbs-proto .metric.featured:before{background:#0d1b2e}
+#sbf-cbs-proto .metric.debit-card:before{background:#ba9863}
+#sbf-cbs-proto .insight-card{border:1px solid #e2ddd5!important;border-top:0!important;border-radius:7px!important;box-shadow:0 9px 24px rgba(20,37,65,.07)}
+#sbf-cbs-proto .insight-card.opportunity{border-left:5px solid #13795b!important}
+#sbf-cbs-proto .insight-card.attention{border-left:5px solid #b54708!important}
+#sbf-cbs-proto section>h2{letter-spacing:.2px}
+#sbf-cbs-proto #sbf-results{animation:sbfReveal .48s ease both}
+#sbf-cbs-proto .metric{animation:sbfRise .42s ease both}
+#sbf-cbs-proto .metric:nth-child(2){animation-delay:.04s}#sbf-cbs-proto .metric:nth-child(3){animation-delay:.08s}#sbf-cbs-proto .metric:nth-child(4){animation-delay:.12s}
+@keyframes sbfReveal{from{opacity:.45}to{opacity:1}}
+@keyframes sbfRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:980px){#sbf-cbs-proto .projection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#sbf-cbs-proto .projection-item.final{grid-column:1/-1}#sbf-cbs-proto .sbf-dashboard{grid-template-columns:minmax(260px,320px) minmax(0,1fr)}}
+@media(max-width:760px){#sbf-cbs-proto .sbf-dashboard form{position:static}#sbf-cbs-proto .projection-head{align-items:start;flex-direction:column;gap:3px}#sbf-cbs-proto .projection-head p{text-align:left}#sbf-cbs-proto .sbf-focus{min-height:210px}}
+@media(max-width:520px){#sbf-cbs-proto header{padding:22px 20px 26px}#sbf-cbs-proto main{padding:16px 12px 28px}#sbf-cbs-proto .projection-grid{grid-template-columns:1fr 1fr}#sbf-cbs-proto .projection-item{padding:12px}#sbf-cbs-proto .metrics{grid-template-columns:1fr}#sbf-cbs-proto .delta-hero{min-height:145px}#sbf-cbs-proto .delta-hero:after{right:14px;top:14px}#sbf-cbs-proto .sbf-focus{padding:24px 20px!important}#sbf-cbs-proto .category{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){#sbf-cbs-proto #sbf-results,#sbf-cbs-proto .metric{animation:none}#sbf-cbs-proto button{transition:none}}
+/* Parecer conectado: resumo em tela e documento A4 gerado pelo navegador. */
+#sbf-cbs-proto .report-launcher{margin:18px 0 0;padding:22px;background:#fff;border:1px solid #e2ddd5;border-left:5px solid #ba9863;box-shadow:0 10px 26px rgba(20,37,65,.08)}
+#sbf-cbs-proto .report-launcher h2{background:transparent;color:#152236;padding:0;margin:0 0 5px;font-size:19px}
+#sbf-cbs-proto .report-launcher>p{font-size:12px;color:#6e6358;margin:0 0 16px}
+#sbf-cbs-proto .report-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}
+#sbf-cbs-proto .report-summary div{min-height:78px;padding:12px;background:#f3f5f8;border-top:3px solid #ba9863}
+#sbf-cbs-proto .report-summary span{display:block;font-size:9px;font-weight:800;letter-spacing:.7px;color:#6e6358;text-transform:uppercase}
+#sbf-cbs-proto .report-summary strong{display:block;margin-top:9px;color:#152236;font-size:15px;line-height:1.15;overflow-wrap:anywhere}
+#sbf-cbs-proto #sbf-export-pdf{width:100%;min-height:50px;background:#ba9863;border-color:#ba9863;color:#152236}
+#sbf-cbs-proto .sbf-cta-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#sbf-cbs-proto .sbf-cta-actions #sbf-export-pdf{background:#fff;border-color:#fff}
+#sbf-cbs-proto .sbf-report{display:none}
+@media(max-width:720px){#sbf-cbs-proto .report-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){#sbf-cbs-proto .sbf-cta-actions{grid-template-columns:1fr}}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{margin:0!important;padding:0!important;background:#fff!important}
+  #sbf-cbs-proto{width:210mm!important;max-width:none!important;margin:0!important;background:#fff!important;color:#253550!important;overflow:visible!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  #sbf-cbs-proto>header,#sbf-cbs-proto>main,#sbf-cbs-proto>.foot{display:none!important}
+  #sbf-cbs-proto .sbf-report{display:block!important;font-family:Arial,sans-serif}
+  #sbf-cbs-proto .report-page{position:relative;width:210mm;min-height:297mm;padding:24mm 16mm 18mm;background:#fff;page-break-after:always;break-after:page;overflow:hidden}
+  #sbf-cbs-proto .report-page:last-child{page-break-after:auto;break-after:auto}
+  #sbf-cbs-proto .report-page.dark{background:#0d1b2e!important;color:#fff!important}
+  #sbf-cbs-proto .report-top{position:absolute;left:0;right:0;top:0;height:18mm;background:#0d1b2e!important;border-bottom:1.2mm solid #d4b47a;color:#fff;padding:5mm 16mm;font-size:8pt;font-weight:800;letter-spacing:.8pt}
+  #sbf-cbs-proto .report-page.dark .report-top{background:transparent!important;border-top:2.5mm solid #d4b47a;border-bottom:0}
+  #sbf-cbs-proto .report-page h1{font-size:26pt;line-height:1.05;letter-spacing:0;margin:0 0 5mm;color:#0d1b2e}
+  #sbf-cbs-proto .report-page.dark h1{color:#fff}
+  #sbf-cbs-proto .report-page h2{font-size:17pt;line-height:1.15;letter-spacing:0;margin:0 0 3mm;color:#0d1b2e}
+  #sbf-cbs-proto .report-page h3{font-size:10pt;line-height:1.25;margin:0 0 2mm;color:#0d1b2e}
+  #sbf-cbs-proto .report-page p{font-size:9pt;line-height:1.5;margin:0 0 3mm;color:#253550}
+  #sbf-cbs-proto .report-page.dark p{color:#e2ddd5}
+  #sbf-cbs-proto .report-kicker{font-size:7.5pt;font-weight:800;letter-spacing:1pt;color:#d4b47a;margin-bottom:3mm;text-transform:uppercase}
+  #sbf-cbs-proto .report-rule{width:18mm;height:1mm;background:#d4b47a;margin:3mm 0 6mm}
+  #sbf-cbs-proto .report-footer{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;color:#8a7e70;font-size:6.5pt}
+  #sbf-cbs-proto .report-brand{font-size:25pt;font-weight:800;color:#fff;line-height:.8;margin-bottom:26mm}
+  #sbf-cbs-proto .report-brand span{display:block;margin-top:3mm;color:#d4b47a;font-size:10pt;letter-spacing:4pt}
+  #sbf-cbs-proto .report-company{margin:10mm 0 6mm;padding-top:4mm;border-top:.3mm solid rgba(201,169,97,.45);font-size:10pt;color:#fff}
+  #sbf-cbs-proto .report-company b{display:block;color:#d4b47a;font-size:7pt;letter-spacing:1pt;margin-bottom:2mm}
+  #sbf-cbs-proto .report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5mm}
+  #sbf-cbs-proto .report-grid.four{grid-template-columns:repeat(4,minmax(0,1fr));gap:3mm}
+  #sbf-cbs-proto .r-card{padding:5mm;background:#f4f6f8!important;border:.3mm solid #e2ddd5;border-left:1.4mm solid #d4b47a;min-height:31mm;break-inside:avoid}
+  #sbf-cbs-proto .dark .r-card{background:#0d1b2e!important;border-color:#314362;color:#fff}
+  #sbf-cbs-proto .r-card.green{border-left-color:#087352}
+  #sbf-cbs-proto .r-card.red{border-left-color:#a52c25}
+  #sbf-cbs-proto .r-card.amber{border-left-color:#9a7a45}
+  #sbf-cbs-proto .r-card span{display:block;font-size:6.5pt;font-weight:800;letter-spacing:.7pt;text-transform:uppercase;color:#8a7e70}
+  #sbf-cbs-proto .dark .r-card span{color:#d4b47a}
+  #sbf-cbs-proto .r-card strong{display:block;margin:3mm 0 2mm;font-size:17pt;line-height:1;color:#0d1b2e;overflow-wrap:anywhere}
+  #sbf-cbs-proto .dark .r-card strong{color:#fff}
+  #sbf-cbs-proto .r-card p{font-size:7.2pt;line-height:1.35;margin:0}
+  #sbf-cbs-proto .report-note{margin-top:5mm;padding:5mm;background:#eaf0f8!important;border-left:1.4mm solid #0d1b2e}
+  #sbf-cbs-proto .report-note.gold{background:#fff6dd!important;border-left-color:#d4b47a}
+  #sbf-cbs-proto .report-note.red{background:#fbecea!important;border-left-color:#a52c25}
+  #sbf-cbs-proto .report-bars{margin-top:8mm}
+  #sbf-cbs-proto .report-bar{display:grid;grid-template-columns:48mm 1fr 31mm;align-items:center;gap:4mm;margin:6mm 0;font-size:8pt;font-weight:700;color:#253550}
+  #sbf-cbs-proto .report-track{height:6mm;background:#e7ebf0!important;border-radius:1.5mm;overflow:hidden}
+  #sbf-cbs-proto .report-fill{height:100%;background:#0d1b2e!important;border-radius:1.5mm}
+  #sbf-cbs-proto .report-fill.gold{background:#d4b47a!important}.report-fill.green{background:#087352!important}.report-fill.red{background:#a52c25!important}
+  #sbf-cbs-proto .score-layout{display:grid;grid-template-columns:52mm 1fr;gap:12mm;align-items:center;margin-top:12mm}
+  #sbf-cbs-proto .score-ring{width:48mm;height:48mm;border:5mm solid #e5e9ee;border-top-color:#a52c25;border-right-color:#a52c25;border-bottom-color:#a52c25;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#0d1b2e}
+  #sbf-cbs-proto .score-ring strong{font-size:25pt;line-height:1}.score-ring span{font-size:6pt;font-weight:800;color:#8a7e70}
+  #sbf-cbs-proto .score-line{display:grid;grid-template-columns:35mm 1fr 14mm;gap:3mm;align-items:center;margin:4mm 0;font-size:7.5pt;font-weight:700}
+  #sbf-cbs-proto .report-list{display:grid;gap:4mm;margin-top:5mm}
+  #sbf-cbs-proto .report-list article{padding:5mm;border:.3mm solid #e2ddd5;border-left:1.4mm solid #d4b47a;background:#fff!important;break-inside:avoid}
+  #sbf-cbs-proto .report-list article.red{border-left-color:#a52c25}.report-list article.green{border-left-color:#087352}
+  #sbf-cbs-proto .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:8mm}
+  #sbf-cbs-proto .timeline article{min-height:155mm;border:.3mm solid #e2ddd5;background:#fff!important}
+  #sbf-cbs-proto .timeline h3{padding:6mm;background:#d4b47a!important;color:#fff;font-size:14pt}
+  #sbf-cbs-proto .timeline article:nth-child(2) h3{background:#087352!important}.timeline article:nth-child(3) h3{background:#0d1b2e!important}
+  #sbf-cbs-proto .timeline ul{margin:6mm;padding-left:8mm;color:#253550;font-size:8pt;line-height:1.5}
+  #sbf-cbs-proto .timeline li{margin-bottom:7mm}
+  #sbf-cbs-proto .money-hero{margin:8mm 0;padding:8mm;background:#0d1b2e!important;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:7mm;align-items:center}
+  #sbf-cbs-proto .money-hero strong{font-size:23pt;line-height:1}.money-hero p{color:#fff!important}
+  #sbf-cbs-proto .unknown-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  #sbf-cbs-proto .unknown-grid article{padding:4.5mm;background:#fff!important;border:.3mm solid #e2ddd5;min-height:24mm}
+  #sbf-cbs-proto .unknown-grid article.hot{background:#fff6dd!important}
+  #sbf-cbs-proto .pillars{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:8mm}
+  #sbf-cbs-proto .pillars article{padding:6mm;border:.3mm solid #e2ddd5;min-height:38mm}
+  #sbf-cbs-proto .pillars b{display:inline-grid;place-items:center;width:7mm;height:7mm;margin-right:3mm;border-radius:50%;background:#d4b47a!important;color:#fff;font-size:7pt}
+  #sbf-cbs-proto .report-cta{display:inline-block;margin-top:7mm;padding:5mm 10mm;background:#d4b47a!important;color:#0d1b2e!important;font-size:10pt;font-weight:800;text-decoration:none;border-radius:2mm}
+}
+</style>
+<header><img class="sbf-brand-logo" alt="SBF Contabilidade" src="data:image/png;base64,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"><div class="eyebrow">SBF CONTABILIDADE · REFORMA TRIBUTÁRIA</div><h1>Veja a CBS no cenário da sua empresa</h1><p>Uma leitura de débitos, créditos e pontos de atenção para 2027.</p><div class="eyebrow">PROTÓTIPO INTERATIVO · DADOS ILUSTRATIVOS</div></header>
+<main>
+<div class="sbf-dashboard">
+<form id="sbf-form"><h2>Dados da simulação</h2>
+<div class="fields">
+<label>CNPJ<input id="sbf-cnpj" placeholder="00.000.000/0000-00" maxlength="18" inputmode="numeric" autocomplete="off"><small id="sbf-cnpj-hint">Digite o CNPJ: preenchemos a empresa, o segmento e o regime automaticamente.</small></label>
+<label>Empresa / razão social<input id="sbf-company" placeholder="Preenchida pelo CNPJ (ou digite)" autocomplete="organization"><small>Preenchida automaticamente pelo CNPJ. Você pode ajustar — é o nome que aparece no parecer.</small></label>
+<label>Segmento / atividade<select id="sbf-sector">
+<optgroup label="Padrão — CBS de teste 8,8%"><option value="comercio">Comércio varejista</option><option value="industria">Indústria</option><option value="servicos">Serviços gerais</option><option value="construcao" disabled>Construção / manutenção — análise específica</option><option value="tecnologia">Tecnologia / software</option></optgroup>
+<optgroup label="Redução de 30% — condições legais"><option value="prof">Profissões regulamentadas*</option></optgroup>
+<optgroup label="Redução de 40% — condições legais"><option value="bares">Bares e restaurantes</option><option value="hotel">Hotelaria</option><option value="turismo">Agências de turismo</option></optgroup>
+<optgroup label="Redução de 60% — condições legais"><option value="saude" selected>Serviços de saúde</option><option value="educacao">Serviços de educação</option><option value="funerario">Serviços funerários</option><option value="artistica">Produção artística</option><option value="desportiva">Atividades desportivas</option></optgroup>
+<optgroup label="Redução de 70% — condições legais"><option value="locacao">Locação de imóveis</option></optgroup></select><small>*Exemplos: advocacia e serviços profissionais de engenharia elegíveis. Medicina, psicologia e enfermagem: consultar serviços de saúde. Construção/manutenção exige distinguir a operação e permanece fora do cálculo padrão.</small></label>
+<label>Faturamento médio mensal (R$)<input id="sbf-revenue" type="number" min="0.01" step="0.01" value="100000" required><small>Valor mensal atual; a parcela anterior retirada é definida nas premissas. Não é preço unitário.</small></label>
+<label>Compras e despesas mensais — SEM FOLHA (R$)<input id="sbf-cost" type="number" min="0" step="0.01" value="30000" required><small class="cost-emphasis">Não incluir salários, pró-labore ou encargos da folha. Referência sem CBS; parcela creditável ajustável.</small></label>
+<label>Regime atual<select id="sbf-regime"><option value="simples">Simples Nacional</option><option value="presumido">Lucro Presumido</option><option value="real">Lucro Real</option></select><small>Seleção manual no protótipo; poderá vir da base de CNPJ.</small></label>
+</div><div class="action"><button type="submit">Atualizar minha simulação</button></div><p id="sbf-error" class="error" role="alert" hidden></p>
+</form>
+<div class="sbf-outcome"><div class="notice">Cenário ilustrativo de CBS no regime regular. Não é apuração fiscal nem previsão do total de impostos. A comparação com 2026 é referencial. Alíquota-padrão de teste: <b id="sbf-rate-note">8,8%</b>; compras creditáveis: <b id="sbf-credit-note">60%</b>. Não são parâmetros individualmente comprovados.</div>
+<div id="sbf-results" aria-live="polite">
+<section class="projection-panel"><div class="projection-head"><h2>Valor mensal projetado · 2027</h2><p>Mesmo volume de vendas, com recomposição tributária.</p></div><div class="projection-grid"><div class="projection-item"><span>Valor atual</span><b id="sbf-price-current"></b></div><div class="projection-item"><span>PIS/Cofins retirado</span><b id="sbf-price-old"></b></div><div class="projection-item"><span>Base ajustada</span><b id="sbf-price-base"></b></div><div class="projection-item"><span>CBS adicionada</span><b id="sbf-price-cbs"></b></div><div class="projection-item final"><span>Projetado em 2027</span><b id="sbf-price-new"></b></div></div><small id="sbf-price-note" class="projection-note"></small></section>
+<div id="sbf-category" class="category green"><strong id="sbf-cat-title"></strong><p id="sbf-cat-copy"></p></div>
+<div id="sbf-focus" class="sbf-focus green"><span>CBS efetiva estimada no cenário</span><strong id="sbf-focus-value"></strong><b id="sbf-focus-status"></b><p id="sbf-focus-text"></p><small>Sinal baseado na diferença frente à referência automática de 2026. Ambas são estimativas, não apuração fiscal.</small></div>
+<div class="metrics"><div class="metric"><span>PIS/Cofins referencial · 2026</span><strong id="sbf-ref-value"></strong><small>Mesma referência usada na recomposição.</small></div><div id="sbf-delta-card" class="metric delta-hero saving"><span id="sbf-ref-delta-label">Diferença estimada</span><strong id="sbf-ref-delta"></strong><small>Comparação mensal, sem demais tributos.</small></div>
+<div class="metric debit-card"><span>Débito estimado de CBS</span><strong id="sbf-debit"></strong><small id="sbf-sale-rate"></small></div>
+<div class="metric credit-card"><span>Crédito estimado nas compras</span><strong id="sbf-credit"></strong><small>Hipótese de elegibilidade e requisitos atendidos.</small></div>
+<div class="metric featured"><span id="sbf-balance-label">Saldo estimado a recolher</span><strong id="sbf-balance"></strong><small>Somente CBS no cenário selecionado.</small></div>
+<div class="metric"><span>CBS a recolher / base de vendas</span><strong id="sbf-effective"></strong><small id="sbf-effective-note">Percentual efetivo estimado de CBS.</small></div>
+</div>
+<section class="report-launcher"><h2>Parecer preliminar conectado</h2><p>O relatório executivo será montado com os dados e resultados deste cenário.</p><div class="report-summary"><div><span>Impacto estimado</span><strong id="sbf-report-impact"></strong></div><div><span>Nível de exposição</span><strong>Alto</strong></div><div><span>Confiabilidade</span><strong>Limitada</strong></div><div><span>Prioridade</span><strong>30 dias</strong></div></div><button id="sbf-export-pdf" type="button">Gerar parecer executivo em PDF</button></section>
+</div>
+</div></div><details><summary>Consultar e ajustar premissas</summary><div class="premises fields">
+<div class="notice"><b>Referência de 2026 calculada automaticamente</b><p id="sbf-ref-method"></p><small>Estimativa referencial; não representa tributo histórico comprovado. No Simples, média não ponderada dos anexos I, II, III e V da tabela do simulador original, com repartições fixas aproximadas daquele modelo. Não determina enquadramento nem substitui tabela fiscal por faixa.</small></div>
+<label>CBS padrão do cenário (%)<input id="sbf-rate" type="number" value="8.8" min="0" max="100" step="0.01"><small>Hipótese ilustrativa; não apresentada como alíquota definitiva de 2027.</small></label>
+<label>Parcela de compras elegível (%)<input id="sbf-eligible" type="number" value="60" min="0" max="100" step="1"></label>
+<label>CBS média nas compras elegíveis (%)<input id="sbf-purchase-rate" type="number" value="8.8" min="0" max="100" step="0.01"><small>Independente da redução nas vendas; depende dos fornecedores e operações.</small></label>
+</div><p>Base ajustada = valor mensal atual × (1 − parcela anterior informada). Valor projetado = base ajustada + débito CBS. Débito = base ajustada × CBS padrão × (1 − redução aplicável). Crédito = compras sem CBS × parcela elegível × CBS média das compras. Saldo = débito − crédito. Saldo negativo é crédito estimado, não restituição imediata.</p><p>A parcela retirada é a referência líquida estimada de PIS/Cofins de 2026. Essa recomposição é hipótese gerencial e não regra fiscal de formação da base da CBS. Base e custos reais podem exigir ajustes. Não considera saldo anterior, estornos nem particularidades de regimes específicos além da redução selecionada. Não inclui IBS, DAS, ISS, ICMS, IRPJ ou CSLL.</p><p>As reduções pressupõem operação e contribuinte elegíveis. O regime atual apenas direciona o comentário; todos os valores acima simulam a CBS regular. As cores identificam grupos do protótipo e não medem vantagem econômica.</p><button id="sbf-update-premises" type="button">Aplicar premissas</button></details>
+<section><h2>Resumo do seu segmento</h2><p>Conteúdo preliminar filtrado pela seleção acima. A base editorial aprovada será incorporada após sua revisão; não há sincronização automática com documentos externos.</p><div class="insight-grid"><article class="insight-card opportunity"><h3>Possíveis oportunidades do setor</h3><p id="sbf-opportunity-copy"></p><small>Potenciais sujeitos a enquadramento; não são ganhos já apurados.</small></article><article class="insight-card attention"><h3>Pontos de atenção</h3><p id="sbf-attention-copy"></p></article></div></section>
+<section><h2>O que merece atenção no seu setor</h2><div class="topics">
+<article class="topic"><h3>01 · Tratamento das vendas</h3><p id="sbf-sector-copy"></p></article>
+<article class="topic"><h3>02 · Gestão de créditos</h3><p>O custo informado não vira crédito integralmente. É necessário verificar documentos, operações elegíveis e requisitos legais para apropriação.</p></article>
+<article class="topic"><h3>03 · Fornecedores e preços</h3><p>Compare preço, tributo e crédito efetivamente aproveitável. A redução nas suas vendas não determina a alíquota das compras. O repasse ao cliente exige avaliação comercial.</p></article>
+<article class="topic"><h3>04 · Próxima decisão</h3><p>Confronte este cenário com sua apuração atual, perfil de clientes e contratos. A simulação isolada não comprova economia nem prejuízo.</p></article>
+</div></section>
+<section id="sbf-simples" class="notice"><h2>Vale avaliar o Simples híbrido?</h2><p id="sbf-simples-copy"></p><p>A opção envolve IBS e CBS fora do DAS. Esta simulação de CBS não compara o custo completo das alternativas e não recomenda migração.</p></section>
+<section class="sbf-cta-panel"><h2>Transforme a projeção em uma decisão</h2><p>Uma análise individual identifica as regras da sua operação e compara as alternativas com a situação atual.</p><div class="sbf-cta-actions"><button id="sbf-cta" type="button">Quero comparar meu cenário com a SBF</button><button id="sbf-export-pdf-bottom" type="button">Gerar parecer em PDF</button></div><p id="sbf-cta-message" hidden role="status">Recebemos seus dados. O Bruno e a equipe SBF retornam pessoalmente — se preferir, chame no WhatsApp agora.</p></section>
+<details><summary>Fontes e escopo técnico</summary><p>Referências para enquadramentos, regimes e créditos: <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214compilado.htm" target="_blank" rel="noopener">LC 214 compilada</a> e <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/decreto/d12955.htm" target="_blank" rel="noopener">Regulamento da CBS</a>. As fontes não confirmam os parâmetros ilustrativos de 8,8% e 60% usados neste teste.</p></details>
+</main><footer class="foot">SBF CONTABILIDADE · Consultoria tributária estratégica<br>Protótipo para avaliação de experiência e conteúdo. Sem envio ou armazenamento externo de dados.</footer>
+<div class="sbf-report" aria-hidden="true">
+<section class="report-page dark"><div class="report-top">PARECER PRELIMINAR CBS</div><div class="report-brand">SBF<span>PRIME</span></div><div class="report-kicker">Reforma tributária | Cenário 2027</div><h1>PARECER PRELIMINAR CBS</h1><h2 style="color:#fff">Da simulação ao diagnóstico estratégico</h2><p>Uma leitura executiva do impacto estimado, da exposição existente e das frentes que podem alterar materialmente o resultado.</p><div class="report-company"><b>EMPRESA ANALISADA</b><span data-r="company"></span><br><span data-r="cnpj"></span> | <span data-r="sector"></span> | <span data-r="regime"></span></div><div class="report-grid"><article class="r-card green"><span>Impacto estimado</span><strong data-r="impact"></strong><p data-r="impact-note"></p></article><article class="r-card red"><span>Nível de exposição</span><strong>ALTO</strong><p>A conclusão depende de dados fiscais e operacionais ainda não testados.</p></article><article class="r-card amber"><span>Confiabilidade</span><strong>LIMITADA</strong><p>Premissas ilustrativas. Serve para triagem, não para apuração.</p></article><article class="r-card"><span>Prioridade de revisão</span><strong>30 DIAS</strong><p>Validar referência, enquadramento, créditos, margem e caixa.</p></article></div><div class="report-footer"><span>Uso gerencial | Não substitui apuração fiscal</span><span>SBF Contabilidade | 01</span></div></section>
+<section class="report-page"><div class="report-top">RESULTADO FINANCEIRO DO CENÁRIO</div><div class="report-kicker">Síntese executiva</div><h2>O número calculado é só o começo</h2><div class="report-rule"></div><p>A comparação usa a referência automática de 2026 e a CBS líquida estimada com as premissas atuais do simulador.</p><div class="report-grid four" style="margin-top:7mm"><article class="r-card"><span>Referência 2026</span><strong data-r="reference"></strong></article><article class="r-card"><span>Débito CBS</span><strong data-r="debit"></strong></article><article class="r-card green"><span>Crédito estimado</span><strong data-r="credit"></strong></article><article class="r-card"><span>Saldo CBS</span><strong data-r="balance"></strong></article></div><div class="report-bars"><div class="report-bar"><span>Débito nas vendas</span><div class="report-track"><div class="report-fill gold" style="width:100%"></div></div><b data-r="debit"></b></div><div class="report-bar"><span>Créditos nas compras</span><div class="report-track"><div id="sbf-rbar-credit" class="report-fill green"></div></div><b data-r="credit"></b></div><div class="report-bar"><span>Saldo a recolher</span><div class="report-track"><div id="sbf-rbar-balance" class="report-fill"></div></div><b data-r="balance"></b></div><div class="report-bar"><span>Referência 2026</span><div class="report-track"><div id="sbf-rbar-reference" class="report-fill"></div></div><b data-r="reference"></b></div></div><div class="report-note"><h3>Leitura gerencial</h3><p>O cenário indica alíquota efetiva de <b data-r="effective"></b>. Pequenas mudanças na elegibilidade dos créditos, no mix ou na referência atual podem inverter o sinal do comparativo.</p></div><div class="report-footer"><span>Valores mensais | Cenário ilustrativo</span><span>SBF Contabilidade | 02</span></div></section>
+<section class="report-page"><div class="report-top">SCORE SBF DE EXPOSIÇÃO</div><div class="report-kicker">Exposição à incerteza</div><h2>78 de 100: prioridade alta</h2><div class="report-rule"></div><p>O score mede quanto a conclusão ainda depende de evidência ausente. Não representa autuação provável, irregularidade ou desempenho.</p><div class="score-layout"><div class="score-ring"><strong>78</strong><span>EXPOSIÇÃO / 100</span></div><div><div class="score-line"><span>Faturamento</span><div class="report-track"><div class="report-fill gold" style="width:67%"></div></div><b>10/15</b></div><div class="score-line"><span>Margem</span><div class="report-track"><div class="report-fill gold" style="width:70%"></div></div><b>14/20</b></div><div class="score-line"><span>Processos</span><div class="report-track"><div class="report-fill red" style="width:87%"></div></div><b>13/15</b></div><div class="score-line"><span>Pessoal</span><div class="report-track"><div class="report-fill red" style="width:80%"></div></div><b>12/15</b></div><div class="score-line"><span>Substrato</span><div class="report-track"><div class="report-fill gold" style="width:73%"></div></div><b>11/15</b></div><div class="score-line"><span>Reforma</span><div class="report-track"><div class="report-fill red" style="width:90%"></div></div><b>18/20</b></div></div></div><div class="report-note gold"><h3>Como ler</h3><p>Quanto maior, mais a decisão depende de validação. A meta do Diagnóstico Método REAL é substituir exposição por evidência.</p></div><div class="report-footer"><span>Score gerencial interno e preliminar</span><span>SBF Contabilidade | 03</span></div></section>
+<section class="report-page"><div class="report-top">OPORTUNIDADES E PONTOS DE ATENÇÃO</div><div class="report-kicker">Agenda de investigação</div><h2>Onde aprofundar primeiro</h2><div class="report-rule"></div><div class="report-grid"><div><h3>OPORTUNIDADES</h3><div class="report-list"><article class="green"><h3>Leitura do segmento</h3><p data-r="opportunity"></p></article><article class="green"><h3>Mapa de créditos</h3><p>Classificar compras por fornecedor, documento e elegibilidade para testar o crédito estimado de <b data-r="credit"></b>.</p></article><article class="green"><h3>Preço e contratos</h3><p>Testar margem, repasse e valor mensal projetado de <b data-r="projected"></b>.</p></article></div></div><div><h3>PONTOS DE ATENÇÃO</h3><div class="report-list"><article class="red"><h3>Leitura do segmento</h3><p data-r="attention"></p></article><article class="red"><h3>Referência atual</h3><p>O comparativo de 2026 é automático e ainda não foi reconciliado com a escrita fiscal.</p></article><article class="red"><h3>Escopo incompleto</h3><p>IBS, split payment, folha, contratos e capital de giro ainda não fazem parte do cálculo.</p></article></div></div></div><div class="report-note"><h3>Decisão recomendada</h3><p>Não tratar <b data-r="impact"></b> como economia comprovada. Primeiro, transformar enquadramento, referência e créditos em evidência auditável.</p></div><div class="report-footer"><span>Oportunidades sujeitas a comprovação</span><span>SBF Contabilidade | 04</span></div></section>
+<section class="report-page"><div class="report-top">PLANO DE AÇÃO</div><div class="report-kicker">Da triagem à transição</div><h2>Uma agenda com entregáveis verificáveis</h2><div class="report-rule"></div><div class="timeline"><article><h3>30 DIAS</h3><ul><li>Coletar 12 meses de apurações e documentos fiscais.</li><li>Segregar receitas por atividade, item e tratamento.</li><li>Mapear compras com e sem potencial de crédito.</li><li>Reconciliar a referência de 2026.</li></ul></article><article><h3>90 DIAS</h3><ul><li>Simular CBS e IBS com mix real.</li><li>Testar impacto em margem, preço e caixa.</li><li>Revisar contratos de clientes e fornecedores.</li><li>Definir indicadores e rotina de acompanhamento.</li></ul></article><article><h3>TRANSIÇÃO</h3><ul><li>Implantar regras fiscais validadas.</li><li>Treinar fiscal, financeiro, compras e comercial.</li><li>Monitorar créditos, split payment e caixa.</li><li>Atualizar cenários a cada mudança normativa.</li></ul></article></div><div class="report-note"><h3>Gate de decisão</h3><p>A transição só avança depois que referência atual, enquadramento, créditos, margem e caixa estiverem reconciliados.</p></div><div class="report-footer"><span>Coordenação sugerida: SBF + liderança da empresa</span><span>SBF Contabilidade | 05</span></div></section>
+<section class="report-page"><div class="report-top">QUANTO DINHEIRO AINDA PODE ESTAR ESCONDIDO?</div><div class="report-kicker">A página mais importante</div><h2>O maior valor ainda não foi medido</h2><div class="report-rule"></div><p>O simulador quantifica uma diferença. O diagnóstico precisa medir as variáveis capazes de ampliar, reduzir ou inverter esse resultado.</p><div class="money-hero"><div><span style="color:#d4b47a;font-size:7pt;font-weight:800">JÁ SIMULADO</span><strong data-r="impact"></strong></div><p data-r="impact-note"></p></div><h3>AINDA NÃO AVALIADO - POTENCIAL NÃO QUANTIFICADO</h3><div class="unknown-grid"><article class="hot"><h3>Mix real de receitas</h3><p>Pode reduzir ou elevar a alíquota média.</p></article><article class="hot"><h3>Créditos por item e fornecedor</h3><p>Pode alterar diretamente a CBS líquida.</p></article><article class="hot"><h3>Apuração efetiva de 2026</h3><p>Pode inverter a comparação de ganho ou perda.</p></article><article><h3>Folha e produtividade</h3><p>Pode pressionar margem sem gerar crédito.</p></article><article><h3>Contratos e repasse</h3><p>Pode transferir ou absorver o impacto.</p></article><article class="hot"><h3>IBS, split payment e prazos</h3><p>Pode criar necessidade adicional de caixa.</p></article><article><h3>Clientes B2B e B2C</h3><p>Pode mudar competitividade e valor percebido.</p></article><article><h3>Saldos, estornos e exceções</h3><p>Pode deslocar o resultado entre períodos.</p></article></div><div class="report-note red"><h3>Conclusão</h3><p>Qualquer valor adicional seria especulação. O dinheiro escondido só se torna oportunidade quando documentos, regras e efeito econômico forem reconciliados.</p></div><div class="report-footer"><span>Nenhum ganho adicional foi estimado sem base documental</span><span>SBF Contabilidade | 06</span></div></section>
+<section class="report-page"><div class="report-top">DIAGNÓSTICO MÉTODO REAL</div><div class="report-kicker">Seis pilares</div><h2>Tributo conectado à operação econômica</h2><div class="report-rule"></div><div class="pillars"><article><h3><b>01</b>Faturamento</h3><p>Receita, recorrência, clientes, mix, concentração e segregação fiscal.</p></article><article><h3><b>02</b>Margem</h3><p>Impostos, custos, precificação, repasse, margem e EBITDA.</p></article><article><h3><b>03</b>Processos</h3><p>Dados, ERP, cadastros, documentos, fechamento e governança.</p></article><article><h3><b>04</b>Pessoal</h3><p>Folha, pró-labore, produtividade, estrutura e custos sem crédito.</p></article><article><h3><b>05</b>Substrato econômico</h3><p>Operação real, contratos, caixa, riscos societários e capital de giro.</p></article><article><h3><b>06</b>Reforma tributária</h3><p>CBS, IBS, creditamento, split payment, transição e competitividade.</p></article></div><div class="report-note gold"><h3>Entregável do diagnóstico</h3><p>Cenário reconciliado, mapa de exposição, oportunidades comprovadas, impacto em margem e caixa, plano de ação e governança para a transição.</p></div><div class="report-footer"><span>Método REAL | Lente consultiva SBF</span><span>SBF Contabilidade | 07</span></div></section>
+<section class="report-page dark"><div class="report-top">PRÓXIMO PASSO</div><div class="report-brand">SBF<span>PRIME</span></div><div class="report-kicker">Decisão executiva</div><h1>DIAGNÓSTICO<br>MÉTODO REAL</h1><p>Transforme premissas em evidência e descubra onde o impacto tributário realmente encontra margem, caixa e operação.</p><div class="report-company"><b>CENÁRIO PREPARADO PARA</b><span data-r="company"></span><br><span data-r="sector"></span> | <span data-r="regime"></span></div><div class="report-grid"><article class="r-card"><span>Base mensal</span><strong data-r="current"></strong><p>Faturamento informado no simulador.</p></article><article class="r-card green"><span>Impacto preliminar</span><strong data-r="impact"></strong><p>Ainda sujeito a validação integral.</p></article></div><a class="report-cta" href="https://sbfcontabilidade.com.br/contato/">AGENDAR DIAGNÓSTICO MÉTODO REAL</a><p style="margin-top:6mm">sbfcontabilidade.com.br/contato<br>contato@sbfcontabilidade.com.br | (21) 98865-2452</p><div class="report-footer"><span>SBF Contabilidade | Consultoria tributária estratégica</span><span data-r="date"></span></div></section>
+</div>
+<script>
+(()=>{const root=document.getElementById('sbf-cbs-proto');const el=id=>root.querySelector('#sbf-'+id);const money=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});const pct=v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+'%';const sectors={saude:{red:.6,color:'green',title:'Redução de 60% · enquadramento a confirmar',copy:'Serviços de saúde elegíveis ao tratamento reduzido. Isso não comprova redução em relação ao imposto atual.'},educacao:{red:.6,color:'green',title:'Redução de 60% · enquadramento a confirmar',copy:'Serviços educacionais abrangidos pelo tratamento reduzido. A atividade efetivamente prestada precisa ser validada.'},prof:{red:.3,color:'yellow',title:'Redução de 30% · condições específicas',copy:'Cenário de serviços profissionais elegíveis. A profissão, a operação e as condições legais precisam ser confirmadas.'},hotel:{red:.4,color:'yellow',title:'Redução de 40% · regime específico',copy:'Cenário simplificado de hospedagem elegível. Alimentação e bebidas exigem análise própria. O crédito nas compras do hotel segue requisitos legais; o cliente adquirente da hospedagem não pode se creditar desses serviços.'},comercio:{red:0,color:'yellow',title:'Comércio · análise por produto e cadeia',copy:'Cenário geral sem redução aplicada às vendas. Produtos podem ter tratamentos distintos; esta hipótese não representa todo o comércio.'},servicos:{red:0,color:'red',title:'Alíquota-padrão · atenção ao cenário',copy:'Sem redução aplicada nesta hipótese. A cor não indica prejuízo; créditos, preços e regime atual precisam ser avaliados.'}};
+
+Object.assign(sectors,{
+industria:{...sectors.servicos,copy:'Indústria: cenário padrão, sem IPI ou Imposto Seletivo. Produtos e regimes específicos exigem avaliação.'},
+construcao:{...sectors.servicos,copy:'Construção/manutenção: referência padrão ilustrativa. Operações imobiliárias podem ter regime específico; não é enquadramento automático.'},
+tecnologia:{...sectors.servicos,copy:'Tecnologia/software: cenário padrão. Natureza da operação e condições do fornecimento precisam ser verificadas.'},
+bares:{red:.4,color:'yellow',title:'Redução de 40% · operação elegível',copy:'Bares e restaurantes: cenário simplificado. Itens excluídos, composição da base e regras do regime específico exigem análise.'},
+turismo:{red:.4,color:'yellow',title:'Redução de 40% · operação elegível',copy:'Agências de turismo: na intermediação, informar base líquida dos repasses documentados. Esses repasses não geram crédito. Não usar o total cobrado ao viajante como base automática.'},
+funerario:{red:.6,color:'green',title:'Redução de 60% · operação elegível',copy:'Serviços funerários, cremação e embalsamamento elegíveis. Validar receitas de outras atividades.'},
+artistica:{red:.6,color:'green',title:'Redução de 60% · operação elegível',copy:'Produções nacionais e operações abrangidas pelo art. 139 e Anexo X. Não se estende automaticamente a toda receita cultural.'},
+desportiva:{red:.6,color:'green',title:'Redução de 60% · operação elegível',copy:'Educação desportiva e operações elegíveis do art. 141. Não abrange indistintamente academias ou SAF.'},
+locacao:{red:.7,color:'green',title:'Redução de 70% · locação elegível',copy:'Locação de imóveis: verificar sujeição ao regime regular e base específica. Redutores e particularidades não estão calculados neste cenário.'}
+});
+
+const refBands=[180000,360000,720000,1800000,3600000,4800000];
+const refTables=[{a:[.04,.073,.095,.107,.143,.19],d:[0,5940,13860,22500,87300,378000],p:.155},{a:[.045,.078,.10,.112,.147,.30],d:[0,5940,13860,22500,85500,720000],p:.155},{a:[.06,.112,.135,.16,.21,.33],d:[0,9360,17640,35640,125640,648000],p:.156},{a:[.155,.18,.195,.205,.23,.305],d:[0,4500,9900,17100,62100,540000],p:.156}];
+function reference2026(revenue,cost,regime){if(regime==='real')return {value:Math.max(0,revenue-cost*.6)*.0925,method:'Lucro Real: (receita − 60% dos custos informados) × 9,25%, limitado a zero. Crédito de 60% é hipótese; não reproduz a apuração real.'};if(regime==='presumido')return {value:revenue*.0365,method:'Lucro Presumido: referência cumulativa padrão de 3,65% da receita; sem particularidades de produtos ou receitas.'};const annual=revenue*12;if(annual>4800000)return {value:0,unavailable:true,method:'Receita anualizada acima de R$ 4,8 milhões: média referencial do Simples não aplicada. Sem comparação e sem retirada de parcela anterior.'};let i=refBands.findIndex(x=>annual<=x);const rate=refTables.reduce((sum,t)=>sum+Math.max(0,(annual*t.a[i]-t.d[i])/annual)*t.p,0)/refTables.length;return {value:revenue*rate,method:'Simples: receita mensal × 12; média aritmética das parcelas aproximadas de PIS/Cofins nos anexos I, II, III e V do modelo de origem. Referência estimada: '+pct(rate*100)+'. Sem validação de anexo, fator R, repartição real ou receitas segregadas.'};}
+function update(){const revenue=Number(el('revenue').value),cost=Number(el('cost').value),rate=Number(el('rate').value),eligible=Number(el('eligible').value),purchase=Number(el('purchase-rate').value);if(!Number.isFinite(revenue)||revenue<=0||!Number.isFinite(cost)||cost<0||[rate,eligible,purchase].some(x=>!Number.isFinite(x)||x<0||x>100)||['rate','eligible','purchase-rate','cost','revenue'].some(x=>el(x).value==='')){el('error').hidden=false;el('error').textContent='Informe faturamento positivo, custos não negativos e percentuais entre 0 e 100.';el('results').hidden=true;return}el('error').hidden=true;el('results').hidden=false;const ref=reference2026(revenue,cost,el('regime').value),oldRate=ref.value/revenue*100;el('ref-method').textContent=ref.method;const s=sectors[el('sector').value],base=revenue-ref.value,debit=base*rate/100*(1-s.red),credit=cost*eligible/100*purchase/100,balance=debit-credit;el('price-current').textContent=money(revenue);el('price-old').textContent=money(revenue-base);el('price-base').textContent=money(base);el('price-cbs').textContent=money(debit);el('price-new').textContent=money(base+debit);el('price-note').textContent='A mesma referência estimada de 2026 alimenta a parcela retirada e o comparativo. Recomposição ilustrativa; não preserva necessariamente a margem. Créditos nas compras de 2027 mantidos nas hipóteses informadas.';el('category').className='category '+s.color;el('cat-title').textContent=s.title;el('cat-copy').textContent=s.copy;el('sector-copy').textContent=s.copy;const notes={saude:['Serviços de saúde elegíveis contam com redução de 60%. Compras admitidas podem gerar créditos no regime regular, sujeitos aos requisitos legais.','Equipe intensiva em folha pode limitar créditos em relação ao custo total. Confirmar enquadramento dos serviços; não há crédito de CBS sobre salários.'],educacao:['Serviços educacionais elegíveis contam com redução de 60%. Livros têm imunidade de IBS e CBS: identificar a venda de livros e distingui-la dos serviços educacionais permite aplicar o tratamento de cada receita.','A imunidade dos livros não se estende automaticamente às mensalidades ou a todo material didático. Folha salarial não gera crédito de CBS. Esta projeção não separa receitas de livros.'],prof:['Redução de 30% para serviços profissionais que atendam às condições legais. Compras elegíveis podem contribuir para reduzir a CBS líquida.','Ser profissão regulamentada não basta para todo enquadramento. Folha salarial não gera crédito; confirmar atividade e estrutura da prestação.'],hotel:['Hospedagem elegível possui redução de 40%. Aquisições admitidas podem gerar créditos para o hotel.','O adquirente da hospedagem não pode tomar crédito desses serviços. Alimentação e bebidas têm regras próprias; folha não gera crédito.'],comercio:['Seu mix pode incluir produtos com CBS zero ou reduzida, conforme classificação e requisitos legais. Mapear os itens pode mudar a projeção e indicar oportunidades de revisão.','A alíquota zero do regime regular não deve ser aplicada automaticamente ao DAS. Avalie Simples integral e híbrido considerando produtos, créditos e clientes. Este cenário geral não separa seu mix.'],servicos:['Aquisições elegíveis podem gerar créditos e reduzir a CBS líquida no regime regular. Revisar documentação e cadeia de fornecedores.','Operações com maior peso da folha podem ter menor potencial de crédito. Salários não geram crédito; atenção ao repasse de preços.']};const n=notes[el('sector').value]||['O enquadramento correto e as compras elegíveis podem alterar a CBS líquida. '+s.copy,'Confirmar atividade, base de cálculo e requisitos dos créditos. '+s.copy];el('opportunity-copy').textContent=n[0];el('attention-copy').textContent=n[1];el('debit').textContent=money(debit);el('credit').textContent=money(credit);el('balance-label').textContent=balance<0?'Saldo credor estimado':'Saldo estimado a recolher';el('balance').textContent=money(Math.abs(balance));el('effective').textContent=pct(Math.max(0,balance)/base*100);const effective=Math.max(0,balance)/base*100;el('focus').className='sbf-focus '+(effective<2?'green':effective<3.65?'yellow':'red');el('focus-value').textContent=pct(effective);el('focus-status').textContent=effective<2?'● Avalie o potencial de economia':effective<3.65?'● Compare com sua tributação atual':'● Atenção: revise créditos e impactos';el('focus-text').textContent=effective<2?'CBS estimada abaixo de 2%. A oportunidade precisa ser confirmada com os tributos correspondentes do regime atual.':'A faixa indica prioridade de análise neste protótipo. Não é recomendação de regime nem comprovação de ganho ou perda.';const difference=ref.value-Math.max(0,balance);el('delta-card').className='metric delta-hero '+(ref.unavailable||difference===0?'neutral':difference>0?'saving':'increase');el('ref-value').textContent=ref.unavailable?'Não disponível':money(ref.value);el('ref-delta').textContent=ref.unavailable?'Não comparado':money(Math.abs(difference));el('ref-delta-label').textContent=difference>=0?'Redução estimada no cenário':'Aumento estimado no cenário';if(ref.unavailable){el('focus').className='sbf-focus yellow';el('focus-status').textContent='● Referência não disponível';el('focus-text').textContent=ref.method;}else{el('focus').className='sbf-focus '+(difference>0?'green':difference<0?'red':'yellow');el('focus-status').textContent=difference>0?'● Redução estimada frente à referência':difference<0?'● Atenção: acima da referência':'● Em linha com a referência';el('focus-text').textContent='Comparação de CBS líquida com PIS/Cofins estimado de 2026, após recomposição de preço. Não é ganho realizado nem economia total; depende das hipóteses de receitas, custos e créditos.';}el('effective-note').textContent=balance<0?'Sem recolhimento estimado; saldo credor sujeito à validação.':'Percentual sobre a base de vendas adotada, não sobre o total da nota.';el('sale-rate').textContent='CBS nas vendas: '+pct(rate*(1-s.red));el('rate-note').textContent=pct(rate);el('credit-note').textContent=pct(eligible);el('simples').hidden=el('regime').value!=='simples';el('simples-copy').textContent=s.color==='red'?'No cenário sem redução nas vendas, a relação entre débitos e créditos merece análise. A cor, sozinha, não determina se o modelo híbrido é vantajoso.':'O tratamento reduzido ou o perfil de compras pode justificar avaliar o modelo híbrido como uma oportunidade. A vantagem depende da comparação completa, inclusive dos clientes atendidos.';if(credit===0)el('simples-copy').textContent+=' Nesta simulação não há créditos estimados nas compras.';}
+el('form').addEventListener('submit',e=>{e.preventDefault();update()});el('update-premises').addEventListener('click',update);['sector','regime'].forEach(id=>el(id).addEventListener('change',update));el('cta').addEventListener('click',()=>el('cta-message').hidden=false);update();})();
+</script>
+<script>
+(()=>{const root=document.getElementById('sbf-cbs-proto'),q=s=>root.querySelector(s),all=s=>[...root.querySelectorAll(s)];
+const parseMoney=text=>{const cleaned=(text||'').replace(/[^0-9,.-]/g,'').replace(/\./g,'').replace(',','.');return Number(cleaned)||0};
+const money=value=>value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const set=(key,value)=>all('[data-r="'+key+'"]').forEach(node=>node.textContent=value);
+function syncReport(){const company=q('#sbf-company').value.trim()||'Empresa simulada',cnpj=q('#sbf-cnpj').value.trim()||'CNPJ não informado',sector=q('#sbf-sector').selectedOptions[0].textContent.replace('*',''),regime=q('#sbf-regime').selectedOptions[0].textContent;
+const reference=parseMoney(q('#sbf-ref-value').textContent),debit=parseMoney(q('#sbf-debit').textContent),credit=parseMoney(q('#sbf-credit').textContent),balance=parseMoney(q('#sbf-balance').textContent),impact=parseMoney(q('#sbf-ref-delta').textContent),current=parseMoney(q('#sbf-price-current').textContent),projected=parseMoney(q('#sbf-price-new').textContent),isIncrease=q('#sbf-ref-delta-label').textContent.includes('Aumento'),unavailable=q('#sbf-ref-delta').textContent.includes('Não');
+const direction=unavailable?'Comparação indisponível':(isIncrease?'Aumento estimado':'Redução estimada'),impactText=unavailable?'Não comparado':money(impact)+'/mês',impactNote=unavailable?'A referência automática não está disponível para este cenário.':direction+' frente à referência automática de 2026. Projeção anual: '+money(impact*12)+'. Não é economia comprovada.';
+set('company',company);set('cnpj',cnpj);set('sector',sector);set('regime',regime);set('impact',impactText);set('impact-note',impactNote);set('reference',q('#sbf-ref-value').textContent);set('debit',q('#sbf-debit').textContent);set('credit',q('#sbf-credit').textContent);set('balance',q('#sbf-balance').textContent);set('effective',q('#sbf-effective').textContent);set('projected',q('#sbf-price-new').textContent);set('current',q('#sbf-price-current').textContent);set('opportunity',q('#sbf-opportunity-copy').textContent);set('attention',q('#sbf-attention-copy').textContent);set('date',new Date().toLocaleDateString('pt-BR'));q('#sbf-report-impact').textContent=(unavailable?'Não comparado':direction+': '+money(impact));
+const max=Math.max(debit,reference,balance,credit,1);q('#sbf-rbar-credit').style.width=(credit/max*100)+'%';q('#sbf-rbar-balance').style.width=(balance/max*100)+'%';q('#sbf-rbar-reference').style.width=(reference/max*100)+'%';document.title='Parecer_Preliminar_CBS_'+company.replace(/[^a-z0-9]+/gi,'_').replace(/^_|_$/g,'');}
+function printReport(){const form=q('#sbf-form');if(!form.checkValidity()){form.reportValidity();return}form.requestSubmit();syncReport();window.print()}
+[q('#sbf-export-pdf'),q('#sbf-export-pdf-bottom')].forEach(button=>button.addEventListener('click',printReport));q('#sbf-form').addEventListener('submit',syncReport);q('#sbf-update-premises').addEventListener('click',syncReport);['#sbf-sector','#sbf-regime'].forEach(selector=>q(selector).addEventListener('change',syncReport));window.addEventListener('beforeprint',syncReport);syncReport();})();
+</script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* Identidade do site principal (tela): DM Sans no corpo, Montserrat nos títulos. Não afeta @media print. */
+@media screen{
+  #sbf-cbs-proto, #sbf-cbs-proto input, #sbf-cbs-proto select, #sbf-cbs-proto button, #sbf-lead-card, #sbf-lead-card input, #sbf-lead-submit{font-family:'DM Sans','Montserrat',Arial,sans-serif}
+  #sbf-cbs-proto h1, #sbf-cbs-proto h2, #sbf-cbs-proto h3, #sbf-cbs-proto .sbf-focus strong, #sbf-cbs-proto .metric strong, #sbf-lead-card h3{font-family:'Montserrat','DM Sans',Arial,sans-serif;letter-spacing:-.01em}
+  #sbf-cbs-proto .projection-item b, #sbf-cbs-proto .metric strong{white-space:nowrap;overflow-wrap:normal;word-break:keep-all;display:block;overflow:hidden}
+}
+</style>
+<style>
+/* Responsivo (tela). O CSS original tem media queries, mas regras posteriores e incondicionais as anulam
+   (cascata por ordem). Este bloco vem por último e força o empilhamento em telas estreitas. */
+@media screen and (max-width: 980px){
+  #sbf-cbs-proto .sbf-dashboard{grid-template-columns:1fr!important;gap:18px!important}
+  #sbf-cbs-proto .projection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #sbf-cbs-proto .metrics,#sbf-cbs-proto .insight-grid,#sbf-cbs-proto .topics,#sbf-cbs-proto .sbf-dashboard .fields{grid-template-columns:1fr!important}
+  #sbf-cbs-proto .sbf-cta-actions{grid-template-columns:1fr!important}
+  #sbf-cbs-proto main{padding-left:14px!important;padding-right:14px!important}
+}
+@media screen and (max-width: 520px){
+  #sbf-cbs-proto .projection-grid{grid-template-columns:1fr 1fr!important}
+  #sbf-cbs-proto header{padding:18px 16px!important}
+  #sbf-cbs-proto header h1{font-size:26px!important}
+  #sbf-cbs-proto .sbf-focus strong{font-size:clamp(40px,14vw,64px)!important}
+  /* selo "IMPACTO MENSAL" (::after) não invade o título em telas estreitas */
+  #sbf-cbs-proto .delta-hero{padding-top:44px!important}
+  #sbf-cbs-proto .delta-hero:after{top:12px!important;right:12px!important}
+}
+</style>
+<!-- ===== Captura de lead SBF (camada adicionada sobre o protótipo original) ===== -->
+<style>
+#sbf-lead-overlay{position:fixed;inset:0;background:rgba(27,45,80,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;font-family:Arial,sans-serif}
+#sbf-lead-overlay.open{display:flex}
+#sbf-lead-card{background:#f8f7f4;color:#0d1b2e;border:1px solid #e2ddd5;border-radius:14px;width:100%;max-width:440px;padding:28px 28px 22px;position:relative;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+#sbf-lead-card h3{margin:10px 0 6px;font-size:20px;color:#0d1b2e}
+#sbf-lead-card p{margin:0 0 16px;font-size:13.5px;color:#6e6358;line-height:1.5}
+#sbf-lead-card label{display:block;font-size:12px;font-weight:700;margin:12px 0 5px;color:#0d1b2e}
+#sbf-lead-card input{width:100%;box-sizing:border-box;padding:11px 12px;font-size:14.5px;border:1.5px solid #e2ddd5;border-radius:8px;background:#fff;color:#0d1b2e}
+#sbf-lead-card input:focus{outline:none;border-color:#ba9863}
+#sbf-lead-badge{display:inline-block;font-size:11px;font-weight:700;color:#7a5e30;background:rgba(200,162,86,.18);padding:4px 10px;border-radius:999px}
+#sbf-lead-submit{margin-top:18px;width:100%;padding:13px;border:none;border-radius:9px;background:#ba9863;color:#0d1b2e;font-weight:700;font-size:14.5px;cursor:pointer}
+#sbf-lead-submit:disabled{opacity:.6;cursor:default}
+#sbf-lead-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:20px;color:#a89e90;cursor:pointer}
+#sbf-lead-note{font-size:11px;color:#a89e90;margin-top:10px}
+#sbf-lead-error{display:none;font-size:12.5px;color:#a33a3a;margin-top:8px}
+@media print{
+#sbf-lead-overlay{display:none!important}
+/* Correção 1: a regra de tela "#sbf-cbs-proto section{margin-top:28px}" alcançava as páginas do
+   relatório; a margem da 1ª página colapsava para cima e deslocava a capa 7,41mm, fazendo o rodapé
+   cair numa página em branco. */
+#sbf-cbs-proto .report-page{margin:0!important;height:calc(297mm - 2px)!important;min-height:0!important;overflow:hidden!important}
+/* A folga de 2px deixaria um fio branco no pé das páginas escuras; o box-shadow (não cortado pelo
+   overflow:hidden) estende a cor da página sobre esse fio. */
+#sbf-cbs-proto .report-page.dark{box-shadow:0 2px 0 0 #0d1b2e!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+/* Altura 1px menor que a folha A4: com min-height exatamente 297mm + quebra forçada, qualquer fração de
+   pixel (escala do Windows, DPI, arredondamento) faz a página atravessar a folha e o rodapé cair numa
+   página em branco -- foi o que gerou 16 páginas no Chrome do cliente. Assim nunca ultrapassa. */
+/* Correção 2: os 4 cartões de valor quebravam o número no meio (17pt + overflow-wrap:anywhere em ~31mm). */
+#sbf-cbs-proto .report-grid.four .r-card strong{font-size:12pt!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;letter-spacing:-.2pt}
+}
+</style>
+<div id="sbf-lead-overlay" role="dialog" aria-modal="true" aria-labelledby="sbf-lead-title">
+  <form id="sbf-lead-card" novalidate>
+    <button type="button" id="sbf-lead-close" aria-label="Fechar">×</button>
+    <span id="sbf-lead-badge">Seu cenário está pronto</span>
+    <h3 id="sbf-lead-title">Para onde enviamos o parecer?</h3>
+    <p>Você segue com o resultado agora e a equipe SBF recebe seu cenário para o parecer completo.</p>
+    <label for="sbf-lead-name">Seu nome</label>
+    <input id="sbf-lead-name" type="text" autocomplete="name" placeholder="Nome completo" required>
+    <label for="sbf-lead-email">E-mail</label>
+    <input id="sbf-lead-email" type="email" autocomplete="email" placeholder="voce@empresa.com.br" required>
+    <label for="sbf-lead-phone">WhatsApp</label>
+    <input id="sbf-lead-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(21) 90000-0000" required>
+    <div id="sbf-lead-error">Preencha nome, e-mail válido e WhatsApp.</div>
+    <button type="submit" id="sbf-lead-submit">Continuar</button>
+    <div id="sbf-lead-note">Usamos seus dados apenas para enviar o parecer e para o contato da SBF Contabilidade.</div>
+  </form>
+</div>
+<script>
+(function(){
+  // Mesmo Google Apps Script já usado pelo formulário de contato do site.
+  // Corpo em texto puro (sem Content-Type) evita preflight OPTIONS, que o Apps Script não responde.
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbyLT3tloJIIVcie9pNq5j_VxeeahOn-NI7mPlTr4N5wWUfQftObp0mMw1i2KrroXlM/exec';
+  var WHATSAPP='5521988652452';
+  var KEY='sbf-cbs-lead-ok';
+  var overlay=document.getElementById('sbf-lead-overlay');
+  var form=document.getElementById('sbf-lead-card');
+  var submitBtn=document.getElementById('sbf-lead-submit');
+  var errBox=document.getElementById('sbf-lead-error');
+  var pending=null;
+  var leadOk=false;
+  try{leadOk=sessionStorage.getItem(KEY)==='1';}catch(e){}
+
+  // Ajuste fino de impressão: se algum valor dos cartões ainda não couber (ex.: casa dos milhões),
+  // reduz a fonte gradualmente em vez de deixar vazar ou quebrar no meio do número.
+  function fitReportValues(){
+    document.querySelectorAll('#sbf-cbs-proto .report-grid.four .r-card strong').forEach(function(s){
+      s.style.fontSize='';
+      var size=12, guard=0;
+      while(s.scrollWidth>s.clientWidth && size>8 && guard++<10){ size-=0.5; s.style.fontSize=size+'pt'; }
+    });
+  }
+  window.addEventListener('beforeprint',fitReportValues);
+
+  // Mesma ideia para a tela: os cartões de valor (linha "Valor mensal projetado" e métricas) não
+  // quebram o número; se não couber, a fonte encolhe até caber.
+  function fitScreenValues(){
+    document.querySelectorAll('#sbf-cbs-proto .projection-item b, #sbf-cbs-proto .metric strong').forEach(function(s){
+      s.style.fontSize='';
+      var size=parseFloat(getComputedStyle(s).fontSize), guard=0;
+      while(s.scrollWidth>s.clientWidth && size>11 && guard++<14){ size-=1; s.style.fontSize=size+'px'; }
+    });
+  }
+  ['change','input','submit'].forEach(function(t){ document.addEventListener(t,function(){ requestAnimationFrame(fitScreenValues); }); });
+  window.addEventListener('resize',function(){ requestAnimationFrame(fitScreenValues); });
+  window.addEventListener('load',function(){ setTimeout(fitScreenValues,50); setTimeout(fitScreenValues,900); }); // 2ª passada após as fontes web carregarem
+  if(document.readyState==='complete'){ setTimeout(fitScreenValues,50); }
+
+  // ---- Consulta automática de CNPJ (BrasilAPI) ----
+  // Ao sair do campo com 14 dígitos: preenche empresa, sugere segmento (pelo CNAE) e regime (opção pelo
+  // Simples). Falha em silêncio: sem CNPJ ou com a API fora, a pessoa segue preenchendo manualmente.
+  var CNAE_SETOR={'69':'prof','71':'prof','86':'saude','85':'educacao','62':'tecnologia','63':'tecnologia','47':'comercio',
+    '56':'bares','55':'hotel','79':'turismo','96':'funerario','90':'artistica','93':'desportiva','68':'locacao',
+    '10':'industria','11':'industria','13':'industria','14':'industria','15':'industria','16':'industria','17':'industria',
+    '18':'industria','20':'industria','22':'industria','23':'industria','24':'industria','25':'industria','26':'industria',
+    '27':'industria','28':'industria','29':'industria','31':'industria','32':'industria'};
+  var cnpjEl=document.getElementById('sbf-cnpj'), cnpjHint=document.getElementById('sbf-cnpj-hint'),
+      companyEl=document.getElementById('sbf-company'), sectorEl=document.getElementById('sbf-sector'), regimeEl=document.getElementById('sbf-regime');
+  var HINT_DEFAULT=cnpjHint?cnpjHint.textContent:'', lastLookup='';
+  function maskCnpj(v){v=v.replace(/\D/g,'').slice(0,14);
+    if(v.length>12)return v.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,2})/,'$1.$2.$3/$4-$5');
+    if(v.length>8)return v.replace(/(\d{2})(\d{3})(\d{3})(\d{1,4})/,'$1.$2.$3/$4');
+    if(v.length>5)return v.replace(/(\d{2})(\d{3})(\d{1,3})/,'$1.$2.$3');
+    if(v.length>2)return v.replace(/(\d{2})(\d{1,3})/,'$1.$2');return v;}
+  function fire(el,type){el.dispatchEvent(new Event(type,{bubbles:true}));}
+  function setHint(t,ok){if(!cnpjHint)return;cnpjHint.textContent=t;cnpjHint.style.color=ok?'#1f6f4e':'';cnpjHint.style.fontWeight=ok?'700':'';}
+  if(cnpjEl){
+    cnpjEl.addEventListener('input',function(){cnpjEl.value=maskCnpj(cnpjEl.value);if(cnpjEl.value.replace(/\D/g,'').length<14){setHint(HINT_DEFAULT,false);lastLookup='';}});
+    cnpjEl.addEventListener('blur',function(){
+      var d=cnpjEl.value.replace(/\D/g,'');
+      if(d.length!==14||d===lastLookup)return;
+      lastLookup=d; setHint('Consultando o CNPJ...',false);
+      fetch('https://brasilapi.com.br/api/cnpj/v1/'+d).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(j){
+        var nome=j.nome_fantasia||j.razao_social||'';
+        if(nome&&companyEl){companyEl.value=nome;fire(companyEl,'input');}
+        var pre=String(j.cnae_fiscal||'').slice(0,2), setor=CNAE_SETOR[pre];
+        if(setor&&sectorEl){var opt=sectorEl.querySelector('option[value="'+setor+'"]');if(opt&&!opt.disabled){sectorEl.value=setor;fire(sectorEl,'change');}}
+        if(j.opcao_pelo_simples&&regimeEl){regimeEl.value='simples';fire(regimeEl,'change');}
+        setHint(nome?'Encontramos: '+nome+(setor?' · segmento sugerido pelo CNAE':''):'CNPJ consultado. Confira o segmento e o regime.',!!nome);
+      }).catch(function(){setHint('Não conseguimos consultar agora. Preencha a empresa e o segmento manualmente.',false);lastLookup='';});
+    });
+  }
+
+  // ---- Abertura a partir do link do e-mail / da landing: cenário na URL e lead já capturado ----
+  // ?cnpj=..&empresa=..&rev=100000&cost=30000&setor=saude&regime=simples&lead=1
+  (function(){
+    var q=new URLSearchParams(location.search); if(![...q.keys()].length)return;
+    function setv(id,v){var e=document.getElementById('sbf-'+id);if(e&&v!=null&&v!==''){e.value=v;fire(e,e.tagName==='SELECT'?'change':'input');}}
+    if(q.get('lead')==='1'){leadOk=true;try{sessionStorage.setItem(KEY,'1');}catch(e){}}
+    setv('cnpj',q.get('cnpj')?maskCnpj(q.get('cnpj')):'');
+    setv('company',q.get('empresa'));
+    if(q.get('setor')&&sectorEl&&sectorEl.querySelector('option[value="'+q.get('setor')+'"]:not([disabled])'))setv('sector',q.get('setor'));
+    if(q.get('regime')&&regimeEl&&regimeEl.querySelector('option[value="'+q.get('regime')+'"]'))setv('regime',q.get('regime'));
+    setv('revenue',q.get('rev')); setv('cost',q.get('cost'));
+    if(q.get('cnpj')){lastLookup=q.get('cnpj').replace(/\D/g,'');setHint(q.get('empresa')?'Cenário carregado para '+q.get('empresa')+'.':'Cenário carregado.',true);}
+    var f=document.getElementById('sbf-form'); if(f&&f.requestSubmit)f.requestSubmit(); else if(f)fire(f,'submit');
+    var res=document.getElementById('sbf-results')||document.querySelector('#sbf-cbs-proto .results, #sbf-cbs-proto .sbf-focus');
+    if(res)setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'start'});},300);
+  })();
+
+  var ACTIONS='#sbf-cta,#sbf-export-pdf,#sbf-export-pdf-bottom';
+  function txt(id){var e=document.getElementById('sbf-'+id);return e?e.textContent.trim():'';}
+  function val(id){var e=document.getElementById('sbf-'+id);if(!e)return '';return e.tagName==='SELECT'?(e.options[e.selectedIndex]||{}).text||e.value:e.value;}
+
+  // Intercepta no capture phase do document: roda antes dos handlers originais do protótipo.
+  document.addEventListener('click',function(e){
+    var btn=e.target&&e.target.closest?e.target.closest(ACTIONS):null;
+    if(!btn||leadOk)return;
+    e.preventDefault();e.stopImmediatePropagation();
+    pending=btn;
+    overlay.classList.add('open');
+    setTimeout(function(){document.getElementById('sbf-lead-name').focus();},50);
+  },true);
+
+  function close(){overlay.classList.remove('open');errBox.style.display='none';}
+  document.getElementById('sbf-lead-close').addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+
+  function buildMessage(){
+    return [
+      'Diagnóstico Setorial CBS 2027 — landing de captação',
+      'Empresa: '+(val('company')||'não informada'),
+      'CNPJ: '+(val('cnpj')||'não informado'),
+      'Segmento: '+val('sector')+' — '+txt('cat-title'),
+      'Regime atual: '+val('regime'),
+      'Faturamento mensal: R$ '+val('revenue'),
+      'Compras/despesas (sem folha): R$ '+val('cost'),
+      'Referência PIS/Cofins 2026: '+txt('ref-value')+' ('+txt('ref-method')+')',
+      'CBS efetiva estimada: '+txt('effective'),
+      'Débito CBS: '+txt('debit')+' | Crédito: '+txt('credit')+' | Saldo: '+txt('balance'),
+      'Diferença vs. 2026: '+txt('ref-delta')+' ('+txt('ref-delta-label')+')',
+      'Ação solicitada: '+(pending&&pending.id==='sbf-cta'?'comparar cenário com a SBF':'parecer executivo em PDF')
+    ].join('\n');
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('sbf-lead-name').value.trim();
+    var email=document.getElementById('sbf-lead-email').value.trim();
+    var phone=document.getElementById('sbf-lead-phone').value.trim();
+    if(!name||!phone||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errBox.style.display='block';return;}
+    errBox.style.display='none';
+    submitBtn.disabled=true;submitBtn.textContent='Enviando...';
+    fetch(ENDPOINT,{method:'POST',body:JSON.stringify({
+      name:name,email:email,phone:phone,company:val('company'),
+      subject:'Diagnóstico Setorial CBS 2027',source:'diagnostico-cbs',message:buildMessage()
+    })}).catch(function(){ /* falha silenciosa: o resultado já está na tela e o WhatsApp continua disponível */ })
+    .finally(function(){
+      leadOk=true;try{sessionStorage.setItem(KEY,'1');}catch(e){}
+      submitBtn.disabled=false;submitBtn.textContent='Continuar';
+      close();
+      var act=pending;pending=null;
+      if(!act)return;
+      if(act.id==='sbf-cta'){
+        var msg='Olá Bruno, sou '+name+(val('company')?' da '+val('company'):'')+'. Acabei de fazer o diagnóstico de CBS 2027 no site e quero comparar meu cenário com a SBF.';
+        window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener');
+      }
+      // Reexecuta a ação original (agora com leadOk=true o interceptador deixa passar):
+      // para o PDF, dispara o printReport() original do protótipo; para o CTA, revela a mensagem de confirmação.
+      act.click();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
