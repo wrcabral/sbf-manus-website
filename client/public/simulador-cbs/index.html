@@ -79,6 +79,29 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;border-top:1px solid var
 #lead-err{display:none;font-size:12.5px;color:var(--red);margin-top:8px}
 .done{display:none;margin-top:22px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px 20px}
 .done.show{display:block}.done b{display:block;font-family:'Montserrat';font-size:16px;margin-bottom:4px}.done p{margin:0 0 12px;font-size:14px;opacity:.9}
+
+/* ===== agendamento embutido ===== */
+.book{margin-top:18px;background:#fff;color:var(--navy);border-radius:16px;padding:22px;display:none}
+.book.show{display:block}
+.book h3{font-size:20px;margin:0 0 4px}.book .sub{color:var(--muted);font-size:14px;margin:0 0 12px}
+.book .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--navy3);font-weight:600;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.book .lab{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;margin:10px 0 8px}
+.book .lab a{color:var(--navy);font-size:12.5px;text-transform:none;letter-spacing:0;font-weight:700;cursor:pointer;text-decoration:underline}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.day{border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;background:#fff}
+.day small{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted)}
+.day b{display:block;font:800 22px 'Montserrat';margin:2px 0}
+.day i{font-style:normal;font-size:11.5px;color:var(--muted)}
+.day.on{background:var(--navy);border-color:var(--navy);color:#fff}.day.on small,.day.on i{color:#e8cfa0}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.slot{border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;font:700 15px 'Montserrat';cursor:pointer;background:#fff}
+.slot:hover{border-color:var(--gold)}.slot.on{background:var(--gold);border-color:var(--gold)}
+.slot:disabled{opacity:.5;cursor:default}
+.book .status{font-size:13.5px;color:var(--muted);margin-top:10px;min-height:18px}
+.book .ok{background:rgba(15,107,71,.08);border:1px solid rgba(15,107,71,.3);border-radius:12px;padding:16px;margin-top:6px}
+.book .ok b{display:block;font-family:'Montserrat';font-size:17px;color:var(--green);margin-bottom:4px}
+.book .ok p{margin:0 0 10px;font-size:14px}
+@media(max-width:520px){.days{grid-template-columns:repeat(4,1fr)}.day b{font-size:19px}.book{padding:16px}}
 @media print{#lead-overlay{display:none!important}}
 </style>
 </head>
@@ -132,8 +155,14 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;border-top:1px solid var
       <b id="done-title"></b>
       <p id="done-text"></p>
       <div class="actions" style="margin-top:0">
-        <a class="btn btn-gold" id="done-agenda" href="#" target="_blank" rel="noopener">Agendar 30 min com o Bruno</a>
+        <button class="btn btn-gold" type="button" id="done-agenda">Escolher horário com o Bruno</button>
         <a class="btn btn-ghost" id="done-parecer" href="#">Ver meu parecer completo agora</a>
+      </div>
+      <div class="book" id="book">
+        <h3>Escolha o melhor horário pra conversa</h3>
+        <p class="sub">Sem compromisso. O Bruno entra na reunião com o seu cenário já estudado.</p>
+        <div class="meta"><span id="bk-dur">30 minutos</span><span>Google Meet</span><span>horário de Brasília</span></div>
+        <div id="bk-body"><div class="status">Buscando horários livres na agenda do Bruno…</div></div>
       </div>
     </div>
     <div class="lock">Esse é o cenário estimado. O que muda ele pra cima ou pra baixo são seus créditos e seu enquadramento — e isso só se descobre olhando seus documentos. É a reunião.</div>
@@ -234,7 +263,59 @@ const ov=document.getElementById('lead-overlay'), form=document.getElementById('
 function completoUrl(){const q=new URLSearchParams();if(cnpjEl.value)q.set('cnpj',cnpjEl.value.replace(/\D/g,''));if(empresa)q.set('empresa',empresa);q.set('rev',num('rev'));q.set('cost',num('cost'));q.set('setor',document.getElementById('sector').value);q.set('regime',document.getElementById('regime').value);q.set('lead','1');return '/simulador-cbs/completo/?'+q.toString();}
 function showDone(nome){const d=document.getElementById('done');document.getElementById('done-title').textContent='Pronto, '+nome.split(' ')[0]+'!';document.getElementById('done-text').textContent='Seu cenário chegou para o Bruno. Marque os 30 minutos ou veja agora o parecer completo, passo a passo.';document.getElementById('done-agenda').href=AGENDA;document.getElementById('done-parecer').href=completoUrl();d.classList.add('show');document.getElementById('cta-agenda').style.display='none';document.getElementById('cta-parecer').style.display='none';}
 function openModal(which){pending=which;if(leadOk){act(which);return;}document.getElementById('lead-title').textContent=which==='agenda'?'Antes de agendar, como falamos com você?':'Para onde enviamos o parecer?';ov.classList.add('open');setTimeout(()=>document.getElementById('lead-name').focus(),50);}
-function act(which){const nome=(document.getElementById('lead-name').value||'').trim()||'você';showDone(nome);if(which==='agenda'){window.open(AGENDA,'_blank','noopener');}else{location.href=completoUrl();}}
+function act(which){const nome=(document.getElementById('lead-name').value||'').trim()||'você';showDone(nome);if(which==='agenda'){openBooking();}else{location.href=completoUrl();}}
+document.getElementById('done-agenda').addEventListener('click',openBooking);
+
+// ===== Agendamento embutido (horários reais via Apps Script; fallback: link da agenda) =====
+const TZ='America/Sao_Paulo', DIAS=['DOM','SEG','TER','QUA','QUI','SEX','SÁB'], MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+let slotsByDay={}, dayKeys=[], dayPage=0, chosen=null, booked=false;
+const fmt=(d,o)=>new Intl.DateTimeFormat('pt-BR',Object.assign({timeZone:TZ},o)).format(d);
+function keyOf(d){const p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);const g=t=>p.find(x=>x.type===t).value;return g('year')+'-'+g('month')+'-'+g('day');}
+function openBooking(){
+  const bk=document.getElementById('book'); bk.classList.add('show'); document.getElementById('done-agenda').style.display='none';
+  bk.scrollIntoView({behavior:'smooth',block:'start'});
+  if(booked||dayKeys.length)return;
+  fetch(ENDPOINT+'?action=slots').then(r=>r.json()).then(j=>{
+    if(!j.ok||!j.slots||!j.slots.length)throw 0;
+    document.getElementById('bk-dur').textContent=(j.duration||30)+' minutos';
+    j.slots.forEach(s=>{const d=new Date(s.start);const k=keyOf(d);(slotsByDay[k]=slotsByDay[k]||[]).push(d);});
+    dayKeys=Object.keys(slotsByDay).sort(); dayPage=0; renderDays(dayKeys[0]);
+  }).catch(()=>{ // script ainda não instalado / sem horários: cai no link da agenda
+    document.getElementById('bk-body').innerHTML='<div class="status">Escolha o horário direto na agenda do Bruno:</div><a class="btn btn-gold btn-block" href="'+AGENDA+'" target="_blank" rel="noopener">Abrir agenda do Bruno</a>';
+  });
+}
+function renderDays(sel){
+  const body=document.getElementById('bk-body'); const page=dayKeys.slice(dayPage*4,dayPage*4+4);
+  const d0=new Date(page[0]+'T12:00:00'); 
+  let h='<div class="lab"><span>Dia</span><a id="bk-more">'+(dayKeys.length>(dayPage+1)*4?'outras datas →':'')+'</a></div><div class="days">';
+  page.forEach(k=>{const d=new Date(k+'T12:00:00Z');const n=slotsByDay[k].length;h+='<div class="day'+(k===sel?' on':'')+'" data-k="'+k+'"><small>'+DIAS[d.getUTCDay()]+'</small><b>'+d.getUTCDate()+'</b><i>'+n+' horário'+(n>1?'s':'')+'</i></div>';});
+  h+='</div>';
+  const list=slotsByDay[sel]||[]; const m=list.filter(d=>Number(fmt(d,{hour:'2-digit',hour12:false}))<12), t=list.filter(d=>Number(fmt(d,{hour:'2-digit',hour12:false}))>=12);
+  const selD=new Date(sel+'T12:00:00Z');
+  h+='<div class="lab"><span>Horário</span><span style="text-transform:none;letter-spacing:0;color:var(--navy)">'+DIAS[selD.getUTCDay()].toLowerCase()+', '+selD.getUTCDate()+' de '+MESES[selD.getUTCMonth()]+'</span></div>';
+  const block=(lab,arr)=>arr.length?'<div class="lab"><span>'+lab+'</span></div><div class="slots">'+arr.map(d=>'<button type="button" class="slot" data-t="'+d.toISOString()+'">'+fmt(d,{hour:'2-digit',minute:'2-digit',hour12:false})+'</button>').join('')+'</div>':'';
+  h+=block('Manhã',m)+block('Tarde',t)+'<div class="status" id="bk-status"></div>';
+  body.innerHTML=h;
+  body.querySelectorAll('.day').forEach(el=>el.addEventListener('click',()=>renderDays(el.dataset.k)));
+  const more=document.getElementById('bk-more'); if(more)more.addEventListener('click',()=>{dayPage++;renderDays(dayKeys[dayPage*4]);});
+  body.querySelectorAll('.slot').forEach(el=>el.addEventListener('click',()=>book(el)));
+}
+function book(el){
+  if(booked)return; chosen=el.dataset.t; document.querySelectorAll('.slot').forEach(s=>{s.classList.toggle('on',s===el);s.disabled=true;});
+  document.getElementById('bk-status').textContent='Confirmando na agenda do Bruno…';
+  const r=lastCalc||{};
+  const scenario=['Empresa: '+(empresa||'não identificada'),'CNPJ: '+(cnpjEl.value||'—'),'Segmento: '+document.getElementById('sector').selectedOptions[0].text,'Regime: '+document.getElementById('regime').selectedOptions[0].text,'Faturamento mensal: '+money(num('rev')),'Compras/despesas: '+money(num('cost')),'Diferença estimada: '+(r.diff!=null?(r.diff>=0?'-':'+')+money(Math.abs(r.diff))+'/mês ('+r.verdict+')':'—'),'Parecer: '+location.origin+completoUrl()].join('\n');
+  fetch(ENDPOINT,{method:'POST',body:JSON.stringify({action:'book',start:chosen,name:document.getElementById('lead-name').value.trim(),email:document.getElementById('lead-email').value.trim(),phone:document.getElementById('lead-phone').value.trim(),company:empresa,scenario})})
+  .then(r=>r.json()).then(j=>{
+    if(!j.ok)throw new Error(j.error||'');
+    booked=true; const d=new Date(j.start);
+    document.getElementById('bk-body').innerHTML='<div class="ok"><b>Reunião marcada ✓</b><p>'+fmt(d,{weekday:'long',day:'numeric',month:'long'})+', às '+fmt(d,{hour:'2-digit',minute:'2-digit',hour12:false})+' (Brasília). O convite com o link do Google Meet foi enviado para <b>'+document.getElementById('lead-email').value.trim()+'</b>.</p>'+(j.meet?'<a class="btn btn-gold" href="'+j.meet+'" target="_blank" rel="noopener">Abrir link da reunião</a>':'')+'</div>';
+  }).catch(e=>{
+    document.querySelectorAll('.slot').forEach(s=>{s.disabled=false;s.classList.remove('on');});
+    document.getElementById('bk-status').textContent=(e&&e.message)?e.message:'Não conseguimos confirmar agora. Tente outro horário ou use a agenda: ';
+    if(!(e&&e.message))document.getElementById('bk-status').insertAdjacentHTML('beforeend','<a href="'+AGENDA+'" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700">abrir agenda do Bruno</a>');
+  });
+}
 document.getElementById('cta-agenda').addEventListener('click',()=>openModal('agenda'));
 document.getElementById('cta-parecer').addEventListener('click',()=>openModal('parecer'));
 document.getElementById('lead-close').addEventListener('click',()=>ov.classList.remove('open'));
