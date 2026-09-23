@@ -14,7 +14,7 @@ Cole este texto no início de uma nova conversa. Sem senhas nem tokens. Atualiza
 - Documentação completa: `docs/PROJETO.md` no repositório.
 
 ## Como o site funciona
-- Home única com seções (âncoras) + páginas: `/metodo-real`, `/rota-tributaria`, `/blog` (243 posts em `content/posts.json`, gerados no build), `/politica-de-privacidade`, `/obrigado`.
+- Home única com seções (âncoras) + páginas: `/metodo-real`, `/rota-tributaria`, `/blog` (248 posts em `content/posts.json`, gerados no build; série da Reforma Tributária publicada em 23/09/2026), `/politica-de-privacidade`, `/obrigado`.
 - 301 de todas as URLs do WordPress antigo no `vercel.json`.
 - **Leads: Google Apps Script** (na conta Workspace do Bruno; código NÃO está no repo) → Planilha Google + e-mail. Envio com `fetch` POST em texto puro (sem Content-Type). Funciona no contato, na landing e no diagnóstico. **Quebrado** no pop-up de saída e na calculadora da home (usam `leads.capture`/`notifyOwner`, dependência da Manus).
 - Identidade: navy `#0d1b2e/#152236/#253550`, dourado `#ba9863/#d4b47a/#e8cfa0`, Montserrat + DM Sans. Assets em `client/public/images/`.

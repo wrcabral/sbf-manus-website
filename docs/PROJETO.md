@@ -1,7 +1,7 @@
 # SBF Contabilidade — Documentação do Projeto Web
 
 > Documento vivo. Atualizar a cada ação relevante no projeto.
-> Última atualização: **07/09/2026**. Sem senhas, tokens ou chaves — só estrutura, decisões e estado.
+> Última atualização: **23/09/2026**. Sem senhas, tokens ou chaves — só estrutura, decisões e estado.
 
 ---
 
@@ -70,7 +70,7 @@ sbf-manus-website/
 ├── server/
 │   ├── routers.ts                 # tRPC: contact.send, leads.capture (ver Seção 6)
 │   └── _core/                     # runtime (index, context, notification, storageProxy, dataApi, oauth…)
-├── content/posts.json             # 243 posts do blog (migrados do WordPress)
+├── content/posts.json             # 248 posts do blog (243 migrados do WordPress + série da Reforma Tributária)
 ├── scripts/generate-blog.mjs      # gera páginas estáticas do blog no build
 ├── drizzle/                       # schema (leads, users) e migrações — não usado em produção
 ├── vercel.json                    # redirects 301 das URLs antigas do WordPress + rewrite da SPA
@@ -79,7 +79,7 @@ sbf-manus-website/
 
 **Comandos:** `npm install --legacy-peer-deps` (há conflito de peer deps pré-existente) · `npm run dev` · `npm run check` (tsc) · `npm run build` (gera blog + vite + servidor).
 
-**Rotas públicas principais:** `/` (home única, seções com âncoras) · `/metodo-real` · `/rota-tributaria` · `/blog` (+243 posts em `/AAAA/MM/DD/slug`) · `/politica-de-privacidade` · `/obrigado` · **`/simulador-cbs`** · **`/simulador-cbs/completo`**.
+**Rotas públicas principais:** `/` (home única, seções com âncoras) · `/metodo-real` · `/rota-tributaria` · `/blog` (+248 posts em `/AAAA/MM/DD/slug`) · `/politica-de-privacidade` · `/obrigado` · **`/simulador-cbs`** · **`/simulador-cbs/completo`**.
 
 **SEO:** todas as URLs do WordPress antigo têm 301 no `vercel.json` (páginas institucionais → âncoras da home; categorias/tags/autor → /blog). Posts mantêm a mesma URL de antes.
 
@@ -87,7 +87,7 @@ sbf-manus-website/
 
 ## 5. Conteúdo
 
-- **Blog:** 243 posts (2021 → ago/2026), fonte em `content/posts.json` + `client/public/data/posts/`. Novo post = adicionar JSON + imagem e fazer push (o build gera a página). Último post: "IBS e CBS na Nota Fiscal: o que mudou a partir de agosto de 2026" (08/08/2026).
+- **Blog:** 248 posts (2021 → set/2026), fonte em `content/posts.json` + `client/public/data/posts/`. Novo post = acrescentar a entrada no topo de `content/posts.json`, rodar `node scripts/generate-blog.mjs pre` (regera `blog-index.json`, `latest-posts.json` e o JSON do post) e fazer push (o build gera a página). Posts do mesmo dia mantêm a ordem do arquivo. Últimos posts: série de 5 artigos da Reforma Tributária (23/09/2026), com links entre si e chamada para `/simulador-cbs`; antes deles, "IBS e CBS na Nota Fiscal" (08/08/2026).
 - **Identidade visual:** navy `#0d1b2e` / `#152236` / `#253550` / `#304366` · dourado `#ba9863` / `#d4b47a` / `#e8cfa0` / `#9a7a45` / `#7a5e30` · neutros quentes `#f8f7f4` / `#f0ede8` / `#e2ddd5` · fontes **Montserrat** (títulos) e **DM Sans** (corpo).
 - **Assets:** `client/public/images/sbf-prime-logo.webp` (logo), `bruno-fonseca-hero.jpg` (hero/quem somos), `bruno-fonseca-retrato.jpg` (retrato novo, circular, usado na landing).
 - **Produtos com página própria:** Método Real SBF (janela de decisão da reforma), Rota Tributária SBF (cronograma IVA Dual 2026–2033).
@@ -202,6 +202,8 @@ Página em branco no PDF (altura 297mm + quebra forçada → agora `calc(297mm �
 | 07/09 | c548f1f | Landing de captação em `/simulador-cbs`; completa em `/simulador-cbs/completo` |
 | 07/09 | a99543e | Agendamento embutido no funil + `Agenda.gs` |
 | 07/09 | b751015 | Chamada por veredito (alerta vermelho / tom verde) |
+| 23/09 | 9702a55 | Blog: desempate estável na ordenação por data (posts do mesmo dia) |
+| 23/09 | eb4b651 | Blog: série de 5 artigos da Reforma Tributária (guia, IBS/CBS, Simples/MEI, split payment, NCM/cClassTrib) |
 
 ---
 
