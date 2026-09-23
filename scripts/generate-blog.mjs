@@ -262,7 +262,8 @@ function writeStaticPages(posts) {
 function main() {
   const mode = process.argv[2]; // "pre" | "post"
   const posts = JSON.parse(fs.readFileSync(POSTS_PATH, "utf-8"));
-  posts.sort((a, b) => (a.year + a.month + a.day > b.year + b.month + b.day ? -1 : 1));
+  // Mais recente primeiro; datas iguais mantem a ordem de content/posts.json (sort estavel).
+  posts.sort((a, b) => (b.year + b.month + b.day).localeCompare(a.year + a.month + a.day));
 
   if (mode === "pre") {
     writeLatestPostsData(posts);
