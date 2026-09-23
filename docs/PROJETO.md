@@ -87,7 +87,7 @@ sbf-manus-website/
 
 ## 5. Conteúdo
 
-- **Blog:** 248 posts (2021 → set/2026), fonte em `content/posts.json` + `client/public/data/posts/`. Novo post = acrescentar a entrada no topo de `content/posts.json`, rodar `node scripts/generate-blog.mjs pre` (regera `blog-index.json`, `latest-posts.json` e o JSON do post) e fazer push (o build gera a página). Posts do mesmo dia mantêm a ordem do arquivo. Últimos posts: série de 5 artigos da Reforma Tributária (23/09/2026), com links entre si e chamada para `/simulador-cbs`; antes deles, "IBS e CBS na Nota Fiscal" (08/08/2026).
+- **Blog:** 248 posts (2021 → set/2026), fonte em `content/posts.json` + `client/public/data/posts/`. Novo post = acrescentar a entrada no topo de `content/posts.json`, rodar `node scripts/generate-blog.mjs pre` (regera `blog-index.json`, `latest-posts.json` e o JSON do post) e fazer push (o build gera a página). Posts do mesmo dia mantêm a ordem do arquivo. **Todo post precisa de `imagePath`** (foto 16:9 em `client/public/blog/`, 768×432, JPEG, sem texto, tons de azul-marinho): sem ela o cartão da listagem e da home fica só com o título. Os 248 posts têm imagem. Últimos posts: série de 5 artigos da Reforma Tributária (23/09/2026), com links entre si e chamada para `/simulador-cbs`; antes deles, "IBS e CBS na Nota Fiscal" (08/08/2026).
 - **Identidade visual:** navy `#0d1b2e` / `#152236` / `#253550` / `#304366` · dourado `#ba9863` / `#d4b47a` / `#e8cfa0` / `#9a7a45` / `#7a5e30` · neutros quentes `#f8f7f4` / `#f0ede8` / `#e2ddd5` · fontes **Montserrat** (títulos) e **DM Sans** (corpo).
 - **Assets:** `client/public/images/sbf-prime-logo.webp` (logo), `bruno-fonseca-hero.jpg` (hero/quem somos), `bruno-fonseca-retrato.jpg` (retrato novo, circular, usado na landing).
 - **Produtos com página própria:** Método Real SBF (janela de decisão da reforma), Rota Tributária SBF (cronograma IVA Dual 2026–2033).
@@ -204,6 +204,7 @@ Página em branco no PDF (altura 297mm + quebra forçada → agora `calc(297mm �
 | 07/09 | b751015 | Chamada por veredito (alerta vermelho / tom verde) |
 | 23/09 | 9702a55 | Blog: desempate estável na ordenação por data (posts do mesmo dia) |
 | 23/09 | eb4b651 | Blog: série de 5 artigos da Reforma Tributária (guia, IBS/CBS, Simples/MEI, split payment, NCM/cClassTrib) |
+| 23/09 | f6ee74c | Blog: imagem de capa nos 5 artigos novos e em 2 posts antigos sem imagem (248/248 com imagem) |
 
 ---
 
