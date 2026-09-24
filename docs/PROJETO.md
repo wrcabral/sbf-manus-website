@@ -97,15 +97,16 @@ sbf-manus-website/
 
 ## 6. Captura de leads — o que funciona e o que não funciona
 
-**Canal que funciona (o padrão do projeto):** **Google Apps Script** (web app na conta Workspace do Bruno) que recebe `POST` em texto puro (sem `Content-Type`, para evitar preflight), grava na **Planilha Google de leads** e **notifica por e-mail**. O código do script vive na conta Google do Bruno — **não está no repositório**.
+**Canal que funciona (o padrão do projeto):** **Google Apps Script** (web app na conta Google **`wrcabral82@gmail.com`, do Wanderson**, confirmado em 24/09/2026) que recebe `POST` em texto puro (sem `Content-Type`, para evitar preflight), grava na **Planilha Google de leads** e **notifica por e-mail**. O código do script vive nessa conta — **não está no repositório**. A planilha "SBF Contabilidade - Contatos do Site" também é do Wanderson (único dono, sem compartilhamento). O aviso por e-mail sai do Gmail dele para `contato@sbfcontabilidade.com.br`. Migrar para a conta do Bruno é uma pendência.
 
 | Formulário | Como envia | Status |
 |---|---|---|
 | Contato (home) | Apps Script | ✅ funciona |
 | Landing `/simulador-cbs` | Apps Script (`source: landing-cbs`, assunto "URGENTE ·" no cenário vermelho) | ✅ funciona |
 | Diagnóstico `/simulador-cbs/completo` | Apps Script (`source: diagnostico-cbs`) | ✅ funciona |
-| Pop-up de saída (home) | tRPC `leads.capture` → `notifyOwner()` | ❌ **quebrado** — depende de `BUILT_IN_FORGE_API_URL/KEY` da Manus, inexistentes na Vercel |
-| Calculadora da home (`CalculadoraSection`) | tRPC `leads.capture` → `notifyOwner()` | ❌ **quebrado** — mesmo motivo |
+| Pop-up de saída (home) | Apps Script via `client/src/lib/leads.ts` (`source: exit_popup`) | ✅ corrigido em 24/09 (antes: tRPC → `notifyOwner()`, que dependia de variáveis da Manus e falhava) |
+| Botão flutuante de contato (home) | Apps Script via `leads.ts` (`source: contact-float`) | ✅ corrigido em 24/09 (estava quebrado e não constava aqui) |
+| Calculadora da home (`CalculadoraSection`) | Apps Script via `leads.ts` (`source: calculator`, faturamento e regime na mensagem) | ✅ corrigido em 24/09 |
 
 **Banco de dados:** o schema Drizzle (tabela `leads`) existe, mas **não há banco conectado** (sem `DATABASE_URL` na Vercel). Toda persistência real está na Planilha Google. Isso é deliberado por enquanto: simples, sem custo, o Bruno já usa.
 
@@ -147,9 +148,9 @@ Página em branco no PDF (altura 297mm + quebra forçada → agora `calc(297mm �
 
 | Integração | Uso | Onde |
 |---|---|---|
-| Google Workspace (e-mail) | remetente dos e-mails do Apps Script (cota 1.500/dia) | conta do Bruno |
-| Google Sheets | planilha de leads (aba de leads; aba "Reuniões" após instalar `Agenda.gs`) | Drive do Bruno |
-| Google Apps Script | webhook de leads + (a instalar) agenda + (planejado) e-mails HTML e ficha do lead | conta do Bruno |
+| Gmail | remetente dos avisos do Apps Script (conta pessoal: cota bem menor que a do Workspace) | conta do Wanderson |
+| Google Sheets | planilha de leads (aba de leads; aba "Reuniões" após instalar `Agenda.gs`) | **Drive do Wanderson** (`wrcabral82@gmail.com`), único dono |
+| Google Apps Script | webhook de leads + (a instalar) agenda + (planejado) e-mails HTML e ficha do lead | **conta do Wanderson** (`wrcabral82@gmail.com`) |
 | Google Calendar | agenda de consultoria (link de agendamento já usado no site) + eventos criados pelo `Agenda.gs` | conta do Bruno |
 | Google Business Profile | perfil do escritório (nota 5,0, 2 avaliações) | acesso via wrcabral82@gmail.com |
 | Analytics / Tag Manager / Search Console / Ads | IDs existem (G-3PKNR06KBB, GTM-TNKLG87, AW-17265491429) — **acesso de editor ainda pendente**; `VITE_ANALYTICS_*` não configurados na Vercel | — |
@@ -204,6 +205,7 @@ Página em branco no PDF (altura 297mm + quebra forçada → agora `calc(297mm �
 | 07/09 | b751015 | Chamada por veredito (alerta vermelho / tom verde) |
 | 23/09 | 9702a55 | Blog: desempate estável na ordenação por data (posts do mesmo dia) |
 | 23/09 | eb4b651 | Blog: série de 5 artigos da Reforma Tributária (guia, IBS/CBS, Simples/MEI, split payment, NCM/cClassTrib) |
+| 24/09 | 9b2d5d5 | Formulários quebrados (pop-up de saída, calculadora e botão flutuante) migrados para o Apps Script; removido resquício de analytics da Manus (`umami`), que dava erro 400 em toda página; código de medição GA4 pronto e inerte |
 | 23/09 | f6ee74c | Blog: imagem de capa nos 5 artigos novos e em 2 posts antigos sem imagem (248/248 com imagem) |
 
 ---
