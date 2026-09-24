@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { trpc } from "@/lib/trpc";
+import { useLeadMutation } from "@/lib/leads";
 import { toast } from "sonner";
 
 const FAIXAS = [
@@ -41,7 +41,7 @@ export default function CalculadoraSection() {
   const [phone, setPhone] = useState("");
   const [leadSent, setLeadSent] = useState(false);
 
-  const capture = trpc.leads.capture.useMutation({
+  const capture = useLeadMutation({
     onSuccess: () => setLeadSent(true),
     onError: () => toast.error("Erro ao enviar. Tente novamente."),
   });

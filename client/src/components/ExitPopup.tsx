@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { trpc } from "@/lib/trpc";
+import { useLeadMutation } from "@/lib/leads";
 import { toast } from "sonner";
 
 export default function ExitPopup() {
@@ -9,7 +9,7 @@ export default function ExitPopup() {
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const capture = trpc.leads.capture.useMutation({
+  const capture = useLeadMutation({
     onSuccess: () => {
       setSubmitted(true);
     },

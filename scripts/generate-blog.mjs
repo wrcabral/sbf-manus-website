@@ -45,6 +45,7 @@ function layout({ title, description, canonical, image, bodyHtml, headerEyebrow 
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
+<script src="/analytics.js" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}" />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Phone, X, Send, User, MessageSquare, Loader2, CheckCircle2 } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { useLeadMutation } from "@/lib/leads";
 import { toast } from "sonner";
 
 export default function ContactFloat() {
@@ -8,7 +8,7 @@ export default function ContactFloat() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
 
-  const sendContact = trpc.contact.send.useMutation({
+  const sendContact = useLeadMutation({
     onSuccess: () => {
       setSubmitted(true);
       setForm({ name: "", phone: "", message: "" });
@@ -24,14 +24,15 @@ export default function ContactFloat() {
       toast.error("Por favor, preencha nome e contato.");
       return;
     }
-    // Usa email padrão quando o usuário fornece apenas telefone
-    const emailValue = form.phone.includes('@') ? form.phone : `contato+${form.phone.replace(/\D/g, '')}@sbfcontabilidade.com.br`;
+    // Só telefone: o e-mail vai vazio (o Apps Script aceita e o aviso mostra o telefone)
+    const emailValue = form.phone.includes('@') ? form.phone : '';
     sendContact.mutate({
       name: form.name,
       email: emailValue,
       phone: form.phone,
       message: form.message || `Contato rápido de ${form.name} — Telefone: ${form.phone}`,
       subject: "Contato Rápido via Ícone de Telefone",
+      source: "contact-float",
     });
   };
 
