@@ -22,6 +22,7 @@ Cole este texto no início de uma nova conversa. Sem senhas nem tokens. Atualiza
 ## Simulador CBS 2027 (funil)
 - `/simulador-cbs` = landing curta (anúncios): CNPJ via BrasilAPI → resultado resumido grátis com veredito → contato → agendamento embutido (ou parecer). Vermelho abre alerta urgente (WhatsApp + agenda); verde tom suave; igual neutro.
 - `/simulador-cbs/completo` = Diagnóstico Setorial v2 do Bruno, PDF de 8 páginas; abre preenchido por URL (`?cnpj&empresa&rev&cost&setor&regime&lead=1`).
+- `/simulador-hibrido` (28/09) = comparador Simples normal × híbrido 2027, ferramenta do Bruno, publicada como está (só `<meta description>` e `analytics.js` acrescentados). Destino do grupo de anúncios "Simples Híbrido" da campanha de Reforma Tributária.
 - Motor (6 passos): referência 2026 por regime (Simples = média dos anexos I/II/III/V) → base = fat − ref → débito = base×8,8%×(1−redução setor) → crédito = compras×60%×8,8% → saldo → diferença = ref − saldo. Limiar "igual" = 0,5% do faturamento.
 - Agendamento: chama `{AppsScript}?action=slots` e `POST {action:'book'}`; sem o módulo instalado, cai no link do Google Agenda. Módulo pronto: `Agenda.gs` (instalar na conta do Bruno).
 

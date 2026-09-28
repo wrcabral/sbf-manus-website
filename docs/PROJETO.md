@@ -59,9 +59,11 @@ sbf-manus-website/
 │   │   ├── images/                # logo, fotos do Bruno (locais, sem CDN externo)
 │   │   ├── blog/                  # imagens dos posts
 │   │   ├── data/posts/            # JSON por post (fonte para o blog)
-│   │   └── simulador-cbs/
-│   │       ├── index.html         # LANDING de captação (curta)      → /simulador-cbs
-│   │       └── completo/index.html# Diagnóstico Setorial do Bruno     → /simulador-cbs/completo
+│   │   ├── simulador-cbs/
+│   │   │   ├── index.html         # LANDING de captação (curta)      → /simulador-cbs
+│   │   │   └── completo/index.html# Diagnóstico Setorial do Bruno     → /simulador-cbs/completo
+│   │   └── simulador-hibrido/
+│   │       └── index.html         # Comparador Simples normal x híbrido, do Bruno → /simulador-hibrido
 │   └── src/
 │       ├── App.tsx                # rotas: /, /obrigado, /metodo-real, /rota-tributaria, /blog, /blog/:slug, /politica-de-privacidade
 │       ├── pages/                 # Home, MetodoReal, RotaTributaria, Blog, BlogPost, Politica, Obrigado
@@ -79,7 +81,7 @@ sbf-manus-website/
 
 **Comandos:** `npm install --legacy-peer-deps` (há conflito de peer deps pré-existente) · `npm run dev` · `npm run check` (tsc) · `npm run build` (gera blog + vite + servidor).
 
-**Rotas públicas principais:** `/` (home única, seções com âncoras) · `/metodo-real` · `/rota-tributaria` · `/blog` (+248 posts em `/AAAA/MM/DD/slug`) · `/politica-de-privacidade` · `/obrigado` · **`/simulador-cbs`** · **`/simulador-cbs/completo`**.
+**Rotas públicas principais:** `/` (home única, seções com âncoras) · `/metodo-real` · `/rota-tributaria` · `/blog` (+248 posts em `/AAAA/MM/DD/slug`) · `/politica-de-privacidade` · `/obrigado` · **`/simulador-cbs`** · **`/simulador-cbs/completo`** · **`/simulador-hibrido`**.
 
 **SEO:** todas as URLs do WordPress antigo têm 301 no `vercel.json` (páginas institucionais → âncoras da home; categorias/tags/autor → /blog). Posts mantêm a mesma URL de antes.
 
@@ -113,6 +115,14 @@ sbf-manus-website/
 **Removido na higienização (06/09):** chatbot com IA, mapa incorporado, painel/login via Manus, plugins de build da Manus, CSP do visualizador, pasta `__manus__`, imagens no CDN da Manus. Zero referências à Manus restantes no código.
 
 ---
+
+## 6b. Simulador Simples normal × híbrido (`/simulador-hibrido`)
+
+Publicado em 28/09/2026, a pedido do Wanderson (áudio do Bruno pedindo campanha de Google Ads focada na Reforma Tributária). Ferramenta do próprio Bruno (arquivo `SBF_Simples_Normal_Hibrido_2027_REV10.html`, recebido por upload), copiada como está — **sem alterar layout nem lógica de cálculo**, só acrescentado `<meta name="description">` e o `<script src="/analytics.js">` para ficar no mesmo padrão do resto do site. Página autocontida (sem chamadas de rede, sem script externo, sem CSP herdada) — revisão de segurança feita antes de subir, sem achados.
+
+8 abas: Visão estratégica, Premissas comuns, Análise detalhada, Formação de preço, Receitas e custos, DRE comparativa, DAS/IBS/CBS, Metodologia e fontes. Compara o Simples Nacional normal com a opção "híbrida" (IBS/CBS recolhidos fora do DAS) para 2027, com premissas editáveis pelo próprio visitante.
+
+⚠️ O Bruno já tinha publicado essa ferramenta por conta própria, num domínio externo (`sbf-simples-normal-hibrido.sbfcontabili-0511.chatgpt.site`), numa revisão mais nova ("Revisão 18") que a que temos aqui (revisão 10 no nome do arquivo, "revisão 08" no rodapé da própria página — numeração inconsistente, é do Bruno). Pendência: pedir a ele a revisão mais recente.
 
 ## 7. Simulador CBS 2027 (funil de captação)
 
