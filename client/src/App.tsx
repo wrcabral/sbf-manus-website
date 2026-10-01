@@ -11,6 +11,7 @@ import RotaTributaria from "./pages/RotaTributaria";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Politica from "./pages/Politica";
+import Links from "./pages/Links";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -23,6 +24,7 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/page/:page"} component={Blog} />
       <Route path={"/politica-de-privacidade"} component={Politica} />
+      <Route path={"/links"} component={Links} />
       {/* Migrated blog post permalinks — must come after the routes above
           so they don't shadow them. */}
       <Route path={"/:year/:month/:day/:slug"} component={BlogPost} />

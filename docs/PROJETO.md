@@ -217,7 +217,7 @@ Página em branco no PDF (altura 297mm + quebra forçada → agora `calc(297mm �
 | 23/09 | eb4b651 | Blog: série de 5 artigos da Reforma Tributária (guia, IBS/CBS, Simples/MEI, split payment, NCM/cClassTrib) |
 | 24/09 | 9b2d5d5 | Formulários quebrados (pop-up de saída, calculadora e botão flutuante) migrados para o Apps Script; removido resquício de analytics da Manus (`umami`), que dava erro 400 em toda página; código de medição GA4 pronto e inerte |
 | 23/09 | f6ee74c | Blog: imagem de capa nos 5 artigos novos e em 2 posts antigos sem imagem (248/248 com imagem) |
-
+| 01/10 | (este commit) | Página de links do Instagram em `/links` (`client/src/pages/Links.tsx`): retrato e bio do Bruno, Simulador de CBS, Simples normal × híbrido, blog, WhatsApp, LinkedIn, YouTube e Instagram. Mesmo desenho da `/links` da Inovalor, na paleta navy/gold da SBF |
 ---
 
 ## 12. Como manter este documento
